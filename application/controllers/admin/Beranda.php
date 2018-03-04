@@ -1,6 +1,6 @@
 <?php 
 	/**
-	* 
+	* wkwkwkwkw
 	*/
 	class Beranda extends CI_Controller
 	{
