@@ -9,14 +9,25 @@
 	{
 
 		var $table = 'tb_kriteria';
+		var $kegiatan = 'tb_kegiatan';
 		
 		function __construct()
 		{
 			parent::__construct();
 		}
 
-		public function getAllKriteria() {
-			$this->db->from($this->table);
+		public function getAllKriteria($id_kegiatan) {
+			$this->db->select('krit.*,k.*');
+			$this->db->from('tb_kegiatan k');
+			$this->db->join('tb_kriteria krit', 'krit.id_kegiatan = k.id_kegiatan');
+			
+			$this->db->where(array('krit.id_kegiatan' => $id_kegiatan));
+
+			return $this->db->get();
+		}
+
+		public function getKegiatan() {
+			$this->db->from($this->kegiatan);
 			return $this->db->get();
 		}
 

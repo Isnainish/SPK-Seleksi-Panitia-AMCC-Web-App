@@ -13,17 +13,24 @@
     </div>  
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
-      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda </a></li>
+      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda</a></li>
 
       <li><a href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"> <i class="icon-user"></i>Data Pendaftar </a></li>
+
+      <li><a href="<?=site_url('admin/Pewawancara')?>"> <i class="icon-user"></i>Data Pewawancara </a></li>
 
       <li class="active"><a href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria')?>"> <i class="icon-interface-windows"></i>Data Kriteria </a>
       </li>
 
-      <li><a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"> <i class="icon-interface-windows"></i>Himpunan Kriteria </a>
+      <li><a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"> <i class="icon-interface-windows"></i>Data Himpunan Kriteria </a>
       </li>
 
-      <li><a href="<?=site_url('admin/DataPerhitungan/Perhitungan')?>"> <i class="icon-padnote"></i>Perhitungan </a></li>
+      <li><a href="<?=site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"> <i class="icon-interface-windows"></i>Data Posisi Kepanitiaan </a>
+      </li>
+
+      <li><a href="<?=site_url('admin/DataPerhitungan/Perhitungan')?>"> <i class="icon-padnote"></i>Data Perhitungan </a></li>
+
+      <li><a href="<?=site_url('admin/DataPerhitungan/Rekomendasi')?>"> <i class="icon-padnote"></i> Data Rekomendasi Posisi </a></li>
 
       <li><a href="<?=site_url('admin/DataHasil/Hasil')?>"> <i class="fa fa-bar-chart"></i>Hasil </a></li>
 
@@ -44,20 +51,35 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-        <?php
-          $daftarKriteria = $listKriteria->num_rows();
-          if ($daftarKriteria == 0) {
-        ?>
-          <div class="button">
-            <a style="color: white;" href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria/tambahKriteria')?>"><button class="btn btn-info btn-sm">Tambah</button></a>
-          </div>
-          <?php
-            }
-            else{
+        <!-- input kegiatan -->
+    <div align="center" class="col-md-12">
+      <div class="row-mt">
 
-          ?>
+        <?php  
+        $search = $this->session->userdata('search');
+        ?>
+        <form action="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/doSearchKegiatan') ?>" method="POST">
+          <div class="col-lg-6">
+            <form role="form">
+              <div class="form-group">
+                <select class="form-control" name="id_kegiatan">
+                  <option value = "kegiatan"> -- Pilih Nama Kegiatan -- </option>
+                  <?php foreach ($select_option->result() as $row) {
+                  ?>
+                    <option value="<?= $row->id_kegiatan ?>" <?= ($row->id_kegiatan == $search['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $row->nama_kegiatan?> </option>
+                    <?php
+                    }
+                  ?>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-info">Pilih</button>
+            </form>         
+          </div>
+        </form>
+      </div>
+    </div> 
           <div class="button">
-            <a style="color: white;" href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria/tambahKriteria')?>"><button class="btn btn-info btn-sm">Tambah</button></a>
+            <a style="color: white;" href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/tambahKriteria/') ?><?= $search['id_kegiatan']?>"><button class="btn btn-info btn-sm">Tambah</button></a>
           </div>
           <br>
           <div class="card">
@@ -70,8 +92,8 @@
                   <tr>
                     <th width="5%">No</th>
                     <th width="30%">Nama kriteria</th>
-                    <th width="5%">Kode</th>
-                    <th width="5%%">Bobot</th>
+                    <th width="10%">Kode</th>
+                    <th width="10%%">Bobot</th>
                     <th width="20%">Keterangan</th>
                     <th width="20%">Aksi</th>
                   </tr>
@@ -89,10 +111,11 @@
                     <td><?= $row->bobot ?></td>
                     <td><?= $row->keterangan ?></td>
                     <td>
+                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/editKriteria/') ?><?= $row->id_kriteria ?>" class="btn btn-warning btn-sm" >Ubah</a>
 
-                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/editKriteria/')?><?= $row->id_kriteria ?>" class="btn btn-warning btn-sm" >Ubah</a>
-
-                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/DeleteKriteria/')?><?= $row->id_kriteria ?>" class="btn btn-danger btn-sm" >Hapus</a>
+                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/DeleteKriteria/') ?><?= $row->id_kriteria ?>" class="btn btn-danger btn-sm" >Delete</a>
+                    </td>
+                    
 
                   </tr>
 
@@ -104,9 +127,7 @@
               </table>
             </div><!-- card-body -->
           </div><!-- card -->
-          <?php
-            }
-          ?>
+          
         </div>
       </div><!-- row -->
     </div> 

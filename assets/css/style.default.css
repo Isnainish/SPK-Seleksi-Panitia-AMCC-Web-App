@@ -1436,7 +1436,7 @@ section.dashboard-counts div[class*='col-']:last-of-type .item {
 
 .daily-feeds .CTAs a {
   font-size: 0.7em;
-  padding: 3px 8px;
+  padding: 8px 10px;
   margin-right: 5px;
 }
 
@@ -1874,10 +1874,10 @@ select option {
   height: 100%;
   display: block;
   z-index: -1;
-  background: url(../img/bg.jpg);
+  background-image: url(../img/cover.jpg);
   background-size: cover;
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
+  /*-webkit-filter: blur(5px);
+  filter: blur(5px);*/
   z-index: 1;
   position: absolute;
   top: 0;

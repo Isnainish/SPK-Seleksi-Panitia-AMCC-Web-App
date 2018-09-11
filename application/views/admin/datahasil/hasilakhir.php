@@ -13,17 +13,24 @@
     </div>
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
-      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda </a></li>
+      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda</a></li>
 
       <li><a href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"> <i class="icon-user"></i>Data Pendaftar </a></li>
+
+      <li><a href="<?=site_url('admin/Pewawancara')?>"> <i class="icon-user"></i>Data Pewawancara </a></li>
 
       <li><a href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria')?>"> <i class="icon-interface-windows"></i>Data Kriteria </a>
       </li>
 
-      <li><a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"> <i class="icon-interface-windows"></i>Himpunan Kriteria </a>
+      <li><a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"> <i class="icon-interface-windows"></i>Data Himpunan Kriteria </a>
       </li>
 
-      <li><a href="<?=site_url('admin/DataPerhitungan/Perhitungan')?>"> <i class="icon-padnote"></i>Perhitungan </a></li>
+      <li><a href="<?=site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"> <i class="icon-interface-windows"></i>Data Posisi Kepanitiaan </a>
+      </li>
+
+      <li><a href="<?=site_url('admin/DataPerhitungan/Perhitungan')?>"> <i class="icon-padnote"></i>Data Perhitungan </a></li>
+
+      <li><a href="<?=site_url('admin/DataPerhitungan/Rekomendasi')?>"> <i class="icon-padnote"></i> Data Rekomendasi Posisi </a></li>
 
       <li class="active"><a href="<?=site_url('admin/DataHasil/Hasil')?>"> <i class="fa fa-bar-chart"></i>Hasil </a></li>
 
@@ -43,7 +50,7 @@
     <!-- hasil akhir -->
     <div class="container-fluid">
       <div class="row" >
-        <div class="col-lg-12">
+        <div class="col-lg-12" >
           <div class="card">
 
             <div class="col-lg-12">
@@ -53,27 +60,36 @@
               </div>
 
               <table class="table">
-                <thead>
+                <thead align="center">
                   <tr>
-                    <th>No</th>
-                    <th>Nama Pendaftar</th>
-                    <th>Nilai</th>
-                    <th>Rangking</th>
+                    <th width="5%">No</th>
+                    <th width="20%">Nama Pendaftar</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                  <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <th></th>    
-                  </tr>
-                </tbody>
-              </table>
+                <tbody align="center">
+                  <?php  
+                  $i=1;
+                  foreach ($lolos as $val) {
+                    ?>
+                    <tr>
+                      <th scope="row"><?= $i?></th>
+                      <td><?= $val['nama_pendaftar']?></td>
+                    </tr>
+                    <?php $i++; } ?>
+                  </tbody>
+                </table>
 
+
+
+              </div>
+            </div><!-- card -->
+            <div class="form-group row">
+            <div class="col-sm-4 offset-sm-5">
+              <a href="<?= site_url('user/LaporanHasil')?>"><button type="submit" class="btn btn-primary">Publikasi</button></a>
             </div>
+          </div>
 
-          </div><!-- card -->
+          
           <br>  
         </div>
       </div><!-- row -->

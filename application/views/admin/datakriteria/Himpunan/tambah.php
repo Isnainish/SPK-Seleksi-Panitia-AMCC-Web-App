@@ -13,17 +13,24 @@
     </div> 
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
-      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda </a></li>
+      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda</a></li>
 
       <li><a href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"> <i class="icon-user"></i>Data Pendaftar </a></li>
+
+      <li><a href="<?=site_url('admin/Pewawancara')?>"> <i class="icon-user"></i>Data Pewawancara </a></li>
 
       <li><a href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria')?>"> <i class="icon-interface-windows"></i>Data Kriteria </a>
       </li>
 
-      <li class="active"><a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"> <i class="icon-interface-windows"></i>Himpunan Kriteria </a>
+      <li class="active"><a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"> <i class="icon-interface-windows"></i>Data Himpunan Kriteria </a>
       </li>
 
-      <li><a href="<?=site_url('admin/DataPerhitungan/Perhitungan')?>"> <i class="icon-padnote"></i>Perhitungan </a></li>
+      <li><a href="<?=site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"> <i class="icon-interface-windows"></i>Data Posisi Kepanitiaan </a>
+      </li>
+      
+      <li><a href="<?=site_url('admin/DataPerhitungan/Perhitungan')?>"> <i class="icon-padnote"></i>Data Perhitungan </a></li>
+
+      <li><a href="<?=site_url('admin/DataPerhitungan/Rekomendasi')?>"> <i class="icon-padnote"></i> Data Rekomendasi Posisi </a></li>
 
       <li><a href="<?=site_url('admin/DataHasil/Hasil')?>"> <i class="fa fa-bar-chart"></i>Hasil </a></li>
 
@@ -51,7 +58,22 @@
             </div>
             <div class="card-body">
             <form method="post" action="<?= base_url() ?>index.php/admin/DataKriteria/HimpKriteria/Himp_Kriteria/addHimpunan">
+            <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Kepanitiaan</label>
+                          <div class="col-sm-4">
+                           <select class="form-control" name="id_kegiatan">
+                            <option>-- Pilih Nama Kegiatan --</option>
+                            <?php foreach ($select_event as $k) {
+                            ?>
+                              <option value="<?= $k->id_kegiatan ?>"><?= $k->nama_kegiatan ?> </option>
 
+
+                            <?php
+                              }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
             <div class="form-group row">
              <label class="col-sm-3 form-control-label">Pilih Kriteria</label>
               <div class="col-sm-4">
@@ -59,7 +81,7 @@
                   <option value = "kriteria"> -- Pilih Kriteria -- </option>
                   <?php foreach ($select_option->result() as $row) {
                   ?>
-                      <option value="<?= $row->id_kriteria ?>"<?= ($row->id_kriteria == $detail['id_kriteria'] ? 'selected="selected"' : '') ?>><?= $row->nama_kriteria?> </option>
+                      <option value="<?= $row->id_kriteria ?>"><?= $row->nama_kriteria ?> </option>
 
                   <?php
                     }
@@ -91,7 +113,10 @@
 
                 <a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"><input type="submit" name="simpan_kriteria" value="Simpan" class="btn btn-primary"></a>
               </div>
+              
+
             </div>
+
             </form>
           </div> <!-- card-body -->
         </div><!-- card -->

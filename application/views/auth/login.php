@@ -32,9 +32,11 @@
             <div class="info d-flex align-items-center">
               <div class="content">
                 <div class="logo">
+                  <!-- <img style="width: 100px; height: 100px; margin-right: 150px; margin-left: 150px;" src=""> -->
                   <h1>Selamat Datang,</h1>
                 </div>
                 <p>Di Sistem Pendukung Keputusan Seleksi Panitia Kegiatan</p>
+                
               </div>
             </div>
           </div>
@@ -42,15 +44,26 @@
           <div class="col-lg-6 bg-white">
             <div class="form d-flex align-items-center">
               <div class="content">
-                <form id="login-form" method="post">
+                <form id="login-form" method="post" action="<?= site_url('auth/Auth/login_process')?>">
                   <div class="form-group">
-                    <input id="login-username" type="text" name="loginUsername" required="" class="input-material">
-                    <label for="login-username" class="label-material">User Name</label>
+                    <input id="login-username" type="text" name="user" class="input-material" placeholder="Username" required>
+                  </div>
+
+                  <div class="form-group">
+                    <input id="login-password" type="password" name="pass" class="input-material" placeholder="Password" required>
                   </div>
                   <div class="form-group">
-                    <input id="login-password" type="password" name="loginPassword" required="" class="input-material">
-                    <label for="login-password" class="label-material">Password</label>
-                  </div><a id="login" href="index.html" class="btn btn-primary">Login</a>
+                <select class="form-control" name="jabatan">
+                  <option value = "kegiatan"> -- Pilih Jabatan -- </option>
+                  <?php foreach ($level->result() as $level) {
+                  ?>
+                    <option value="<?= $level->id_level ?>"><?= $level->nama_level?> </option>
+                    <?php
+                    }
+                  ?>
+                </select>
+              </div>
+                  <input type="submit" name="login" class="btn btn-primary" value="Login">
                 </form>
               </div>
             </div>

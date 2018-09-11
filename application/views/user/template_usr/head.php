@@ -46,8 +46,10 @@
                   <div class="brand-text brand-big"><span>S P K Seleksi</span><strong> PanitiaKegiatan</strong></div>
                   </a>
               </div>
+              
               <!-- Navbar Menu -->
             </div>
           </div>
+
         </nav>
       </header>
