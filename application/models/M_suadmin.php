@@ -46,37 +46,44 @@
 		}
 
 		/*ubah data suadmin*/
-		public function getDataSuad(){
+		public function getDataSuad($id){
 			$this->db->from('tb_detail_user duser');
 			$this->db->join('tb_kegiatan k','k.id_kegiatan = duser.id_kegiatan');
 			$this->db->join('tb_user user','user.id_user = duser.id_user');
 			$this->db->join('tb_level level','level.id_level = duser.id_level');
-			$this->db->select('duser.*, k.*, user.*, level.*');
-			
-			$this->db->where('level.id_level = 1');
+			$this->db->select('duser.*, user.*');
+			$this->db->where($this->session->userdata['auth_session']['id_user'], $id);
 
 			return $this->db->get()->row_array();
 		}
 
-		public function updatedtuser($datauser){
-			return $this->db->update($this->user,$datauser);
+		public function updatedtuser($id,$datauser){
+			$this->db->where($id);
+			return $this->db->update($this->user, $datauser);
 		}
 
-		public function updateSuad($datasuad){
-			$this->db->from('tb_detail_user duser');
-			$this->db->join('tb_kegiatan k','k.id_kegiatan = duser.id_kegiatan');
-			$this->db->join('tb_user user','user.id_user = duser.id_user');
-			$this->db->join('tb_level level','level.id_level = duser.id_level');
-			$this->db->select('duser.*, k.*, user.*, level.*');
+		// public function updateSuad($id, $datauser){
+		// 	$this->db->from('tb_detail_user duser');
+		// 	$this->db->join('tb_kegiatan k','k.id_kegiatan = duser.id_kegiatan');
+		// 	$this->db->join('tb_user user','user.id_user = duser.id_user');
+		// 	$this->db->join('tb_level level','level.id_level = duser.id_level');
 			
-			$this->db->update($this->duser, $datasuad);
+		// 	$this->db->where($id);
+		// 	return $this->db->update($this->duser, $datauser);
+		// }
+
+		public function updateSuad($id,$datauser){
+			$this->db->from('tb_user');
+			$this->db->where('id_user',$id);
+
+			return $this->db->update($this->user,$datauser);
 		}
+		
 
 		/*DATA KEGIATAN*/
 
 		public function getAllKegiatan(){
 			$this->db->from('tb_kegiatan k');
-			$this->db->group_by('k.tanggal','DESC');
 			return $this->db->get();
 		}
 
@@ -123,15 +130,25 @@
 			return $this->db->get();
 		}
 
+		public function getUser(){
+			$this->db->from($this->user);
+			return $this->db->get();
+		}
+
 		public function insert($datauser){
 			$this->db->insert('tb_user',$datauser);
 			return $this->db->insert_id();
 
 		}
 
-		public function addAdmin($dataduser){
+		public function addAdmins($dataduser){
 			$this->db->insert('tb_detail_user', $dataduser);
 			return $this->db->insert_id();
+		
+		}
+
+		public function addAdmin($dataduser){
+			return $this->db->insert('tb_detail_user', $dataduser);
 		
 		}
 		/*detail admin*/
@@ -147,32 +164,6 @@
 			$this->db->where($id);
 			return $this->db->get();
 
-		}
-
-		public function updateuser($id,$datauser){
-			$this->db->where($id);
-			return $this->db->update($this->user, $datauser);
-		}
-
-		/*ubah admin*/
-		public function getDataAdmin($id){
-			$this->db->from('tb_detail_user duser');
-			$this->db->join('tb_kegiatan k','k.id_kegiatan = duser.id_kegiatan');
-			$this->db->join('tb_user user','user.id_user = duser.id_user');
-			$this->db->join('tb_level level','level.id_level = duser.id_level');
-			$this->db->select('duser.*, k.*, user.*, level.*');
-			$this->db->where($id);
-			return $this->db->get()->row_array();
-		}
-
-		public function updateAdmin($id,$dataduser){
-			$this->db->from('tb_detail_user duser');
-			$this->db->join('tb_kegiatan k','k.id_kegiatan = duser.id_kegiatan');
-			$this->db->join('tb_user user','user.id_user = duser.id_user');
-			$this->db->join('tb_level level','level.id_level = duser.id_level');
-			$this->db->select('duser.*, k.*, user.*, level.*');
-			$this->db->where($id);
-			$this->db->update($this->duser, $dataduser);
 		}
 
 		/*hapus admin*/

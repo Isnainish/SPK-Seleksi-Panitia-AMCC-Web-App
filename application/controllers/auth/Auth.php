@@ -29,19 +29,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$jabatan = $this->input->post('jabatan', true);
 				$user = $this->input->post('user', true);
 				$pass = $this->input->post('pass', true);
-
 				$cek_user = $this->m_login->loginAdmin($user, $pass, $jabatan);
-
 				if ($cek_user -> num_rows() > 0) {
-
 					$session_data = array(
+							'id_detail_user' => $cek_user->row()->id_detail_user,
                             'id_user'   => $cek_user->row()->id_user,
+                            'nama' => $cek_user->row()->nama,
+                            'username' => $cek_user->row()->username,
+                            'password' => $cek_user->row()->password, 
                             'id_kegiatan' => $cek_user->row()->id_kegiatan,
-                            'level' => $cek_user->row()->nama_level,
+                            'nama_kegiatan' => $cek_user->row()->nama_kegiatan,
+                            'tanggal' => $cek_user->row()->tanggal,
+                            'id_level' => $cek_user->row()->id_level,
+                            'level' => $cek_user->row()->nama_level
                         );
-
 					$this->session->set_userdata('auth_session', $session_data);
-
 					if ($cek_user->row()->nama_level == $this->ADMIN) {
 						redirect('admin/Beranda');
 					} elseif ($cek_user->row()->nama_level == $this->PEWAWANCARA) {
@@ -49,75 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					} elseif ($cek_user->row()->nama_level == $this->SUADMIN) {
 						redirect('suadmin/SuAdmin');
 					}
-      //                       'user_id'   => $apps->id_user,
-      //                       'user_name' => $apps->username,
-      //                       'user_pass' => $apps->password,
-      //                   );
-					
+				}else{
+
+					echo "<script type='text/javascript'>alert('Maaf, Data Yang Anda Masukkan Salah! Silahkan Ulangi.');window.location.href='".site_url('auth/Auth')."'</script>";
 				}
-
-				// if($jabatan == '0') {
-				// 	//if super admin
-
-				// } else if ($jabatan == '1') {
-				// 	// echo "Ketua Panitia";
-				// 	$cek_user = $this->m_login->loginAdmin($user, $pass);
-				// 	if ($cek_user->num_rows() > 0) {
-				// 		echo "Login Success Ketua Panitia";
-				// 	} else {
-				// 		echo "Eror Password atau Username";
-				// 	}
-				// } else if ($jabatan == '2'){
-				// 	$cek_user = $this->m_login->loginUser($user, $pass);
-				// 	if ($cek_user->num_rows() > 0) {
-				// 		echo "Login Success Ketua Panitia";
-				// 	} else {
-				// 		echo "Eror Password atau Username";
-				// 	}
-				// } else{
-				// 	echo "eror";
-				// }
-
-				//admin
-			// 	$cek_admin = $this->m_login->loginAdmin($user, $pass);
-			// 	// $admin = count($cek_admin);
-
-			// 	if ($cek_admin->num_rows() > 0 ) { //jika login sbg admin
-			// 		$cek_a = $this->db->get_where('tb_admin',array('username' =>$user, 'password'=>$pass))->row();
-
-			// 		$data = array('masuk'=>true, 'username' => $cek_a->username);
-					
-			// 		$this->session->set_userdata('auth_login',$data);
-
-			// 		if($cek_a > 0){
-
-			// 			redirect('admin/Beranda');
-			// 		}else{
-			// 			redirect('auth/Auth');
-			// 		}
-						
-				
-			// 	}else{
-			// 		$cek_user = $this->m_login->loginUser($user, $pass);
-
-			// 		if ($cek_user->num_rows() > 0 ) {
-						
-			// 			$cek_u = $this->db->get_where('tb_pewawancara',array('username' =>$user, 'password'=>$pass))->row();
-
-			// 			$data = array('masuk'=>true, 'username' => $cek_u->username);
-					
-			// 			$this->session->set_userdata('auth_login',$data);
-
-			// 			if ($data['jabatan'] == 'pengurus') {
-			// 				redirect('user/User');
-			// 			}else{
-			// 				$this->session->set_flashdata('login_error', 'Username or password incorrect');
-			// 				redirect('auth/Auth');
-			// 			}
-			// 		}
-			// 	}
-
-
 			}
 		
 

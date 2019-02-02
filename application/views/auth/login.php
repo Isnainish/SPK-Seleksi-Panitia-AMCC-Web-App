@@ -32,11 +32,11 @@
             <div class="info d-flex align-items-center">
               <div class="content">
                 <div class="logo">
-                  <!-- <img style="width: 100px; height: 100px; margin-right: 150px; margin-left: 150px;" src=""> -->
                   <h1>Selamat Datang,</h1>
                 </div>
-                <p>Di Sistem Pendukung Keputusan Seleksi Panitia Kegiatan</p>
-                
+                <h5 style="font-size: 16px;">Di Sistem Pendukung Keputusan Seleksi Panitia Kegiatan</h5>
+                <strong style="color: #000; font-size: 22px;">AMIKOM COMPUTER CLUB</strong><br>
+                <p style="font-size: 10px;">Universitas Amikom Yogyakarta</p>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
       </div>
     </div>
     <div class="copyrights text-center">
-      <p>Suported By <a href="https://www.amcc.or.id" class="external">Amikom Computer Club</a>
+      <p>Suported By <strong><a href="https://www.amcc.or.id" class="external" style="color: #000;">Amikom Computer Club</a></strong>
       </p>
     </div>
   </div>

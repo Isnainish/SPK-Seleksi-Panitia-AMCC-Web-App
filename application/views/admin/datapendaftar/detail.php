@@ -61,6 +61,10 @@
                foreach ($listDetail->result() as $row) {                    
                 ?>
                   <tr>
+                      <img style="width: 150px; height: 150px;" src="<?= base_url()?>assets/foto/<?=$row->filefoto?>">                    
+                    
+                  </tr>
+                  <tr>
                     <td width="30%">Nama Peserta</td>
                     <td width="70%"><?= $row->nama_pendaftar ?></td>        
                   </tr>
@@ -116,12 +120,7 @@
                      
                     </td>
                   </tr>
-                  <tr>
-                    <td width="30%">Foto</td>
-                    <td width="70%">
-                      <img style="width: 150px; height: 150px;" src="<?= base_url()?>assets/foto/<?=$row->filefoto?>">                    
-                    </td>
-                  </tr>
+                  
                 <?php 
                   }
                  ?>
@@ -129,9 +128,10 @@
           </div><!-- card-body -->
 
         </div><!-- card -->
-        <div class="col-sm-4" style="margin: 10px;">
-          <a style="color: white;" href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"><button class="btn btn-info btn-sm" style="padding: 10px;">Kembali</button></a>
+        <div class="form-group row" style="margin-left: 4px;">
+          <a style="color: white;" href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"><button class="btn btn-secondary btn-sm" style="padding: 10px;">Kembali</button></a>
         </div>
+        <br>
       </div>
     </div><!-- row -->
   </div>

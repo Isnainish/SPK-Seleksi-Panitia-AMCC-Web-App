@@ -18,10 +18,19 @@
 			parent::__construct();
 		}
 		
-
-		public function getKegiatan(){
+		public function getAllKegiatan(){
 			$this->db->from($this->kegiatan);
-			return $this->db->get()->result();
+			return $this->db->get();
+		}
+
+		public function getKegiatan($idUser, $idLevel){
+			$this->db->from('tb_detail_user duser');
+			$this->db->join('tb_kegiatan kegiatan', 'kegiatan.id_kegiatan = duser.id_kegiatan');
+			$this->db->join('tb_user user', 'user.id_user = duser.id_user');
+			$this->db->where('duser.id_level', $idLevel);
+			$this->db->where('duser.id_user', $idUser);
+
+			return $this->db->get();
 		}
 
 		public function getSie($id_kegiatan){
@@ -47,6 +56,22 @@
 		/*Halaman utama pewawancara*/
 		public function insertnama($data){
 			return $this->db->insert($this->pww,$data);
+		}
+
+		public function getPewawancara($id_user){
+			$this->db->from('tb_detail_user duser');
+			$this->db->join('tb_user user','user.id_user = duser.id_user');
+			$this->db->select('duser.*, user.*');
+			$this->db->where('duser.id_user',$id_user);
+
+			return $this->db->get()->row_array();
+		}
+
+		public function updatePewawancara($id_user, $datauser){
+			$this->db->from('tb_user');
+			$this->db->where('id_user', $id_user);
+			$this->db->update('tb_user', $datauser);
+
 		}
 
 		public function getDraftPendaftar($id_kegiatan){
@@ -80,10 +105,12 @@
 			return $this->db->get();
 		}	
 
-		public function doaddPenilaian($data){
+		public function doaddPenilaian($datanilai){
 			$this->db->from('tb_penilaian nilai');
-			$this->db->select('nilai.*');
-			return $this->db->insert($this->nilai,$data);
+			$this->db->join('tb_kegiatan k','k.id_kegiatan = nilai.id_kegiatan');
+			$this->db->join('tb_pendaftar pendaftar','pendaftar.id_pendaftar = nilai.id_pendaftar');
+			$this->db->select('nilai.*, k.*, pendaftar.*');
+			return $this->db->insert($this->nilai, $datanilai);
 		}
 
 		public function getNamePewawancara(){

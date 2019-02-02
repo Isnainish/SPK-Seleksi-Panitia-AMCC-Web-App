@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/template/header'); ?>
+n<?php $this->load->view('admin/template/header'); ?>
 
 <div class="page-content d-flex align-items-stretch"> 
   <!-- Side Navbar -->
@@ -59,19 +59,25 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="form-control-label">Nama Lengkap Admin</label>
-                        <input type="text" placeholder="nama lengkap" class="form-control" name="nama" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="form-control-label">username</label>
-                        <input type="text" placeholder="username" class="form-control" name="username" required>
-                      </div>
-                      <div class="form-group">       
-                        <label class="form-control-label">Password</label>
-                        <input type="password" placeholder="password" class="form-control" name="password">
-                      </div>
+                          <label class="form-control-label">Nama Admin</label>
+                          <div>
+                           <select class="form-control" name="id_user">
+                            <option>-- Pilih Nama --</option>
+                            <?php foreach ($nama->result() as $nama) {
+                            ?>
+                              <option value="<?= $nama->id_user ?>"><?= $nama->nama ?> </option>
 
-                             
+                            <?php
+                              }
+                            ?>
+
+                          </select>
+                        </div>
+                        
+                      </div>
+                      <small><a style="color: red;" href="<?= site_url('suadmin/SuAdmin/tambahAdmins')?>">Ketik Manual Nama Admin</a></small>
+                      <br><br>       
+                      
                       <input type="submit" value="Simpan" class="btn btn-info"> 
                     
                   </form> 

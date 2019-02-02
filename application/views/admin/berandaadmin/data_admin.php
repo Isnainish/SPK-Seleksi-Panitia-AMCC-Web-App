@@ -48,38 +48,58 @@
   </header>
   <br>
 
-  <div class="col-lg-12" style="margin-left: 10px;">
-    <div class="col-lg-5">
-      <div class="client card">
-        <?php foreach ($admin->result() as $row) {
-          ?>
-          <div class="card-body text-center" style="border-bottom: 30px solid #EEF5F9;">
+  <div class="col-lg-12">
+    <form role="form">
+      <div class="form-inline" >
+        <div class="col-lg-5" >
+          <!-- profil admin -->
+          <div class="client card">
+            <div class="card-body text-center">
 
-            <div class="client-avatar">
-              <img src="<?=base_url('assets/img/amcc-logo.png')?>" alt="..." class="img-fluid rounded-circle">
-              <div class="status bg-green"></div>
-            </div>
-            <div class="client-title">
-              <h3><?= $row->nama?></h3><span>Ketua Panitia
-              <br><?=$row->nama_kegiatan?><br><small style="color: #0090d2;"><?= $row->tanggal ?></small></span>
-              <a href="#">Admin</a>
-            </div>
-            <div class="client-info" >
-              <div class="row">
-                <div class="col-4"><strong>Username</strong><br><?= $row->username?></div>
-                <div class="col-4"><strong><a href=""></a></strong><br><small></small></div>
-                <div class="col-4"><strong>Password<a href=""></a></strong><br><?= $row->password?></div>
+              <div class="client-avatar">
+                <img src="<?=base_url('assets/img/amcc-logo.png')?>" alt="..." class="img-fluid rounded-circle">
+                <div class="status bg-green"></div>
               </div>
-              <div class="row">
-                  <div class="col-4"><strong><a href=""></a></strong><br><small></small></div>
-                  <div class="col-4"><button class="btn btn-sm btn-warning" style="padding: 10px;"><strong><a style="color: #000;" href="<?= site_url('admin/Beranda/ubahAdmin/')?><?=$row->id_detail_user?>">Ubah</a></strong><br><small></small></button></div>
+              <br>
+              <div class="client-title">
+                <h3><?= $this->session->userdata['auth_session']['nama'];?></h3><a href="#">Admin</a><span>(Ketua Panitia)</span><br>
               </div>
-                  <div class="client-social d-flex justify-content-between"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a><a href="#" target="_blank"><i class="fa fa-twitter"></i></a><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></div>
+              <div class="client-info" >
+                <!-- <div class="row">
+                  <div class="col-4">
+                  </div>
+                  <div class="col-4"><button class="btn btn-sm btn-warning" style="padding:5px;"><strong><a style="color: #000; font-size: 15px;" href="">Ubah Profil</a></strong><br><small></small></button>
+                  </div>
+                  <div class="col-4">
+                  </div>
+                </div> -->
+                <div class="client-social d-flex justify-content-between"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a><a href="#" target="_blank"><i class="fa fa-twitter"></i></a><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></div>
+              </div>
             </div>
           </div>
-        <?php } ?>
+        </div>
+        <!-- content -->
+        <div class="statistics col-lg-6 col-12">
+        <?php foreach ($detail_admin->result() as $detadmin) {
+        ?>
+          <div class="statistic d-flex align-items-center bg-white has-shadow" > 
+            <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
+              <div class="text" style="font-size: 12px;"><strong><small><?=$detadmin->nama_kegiatan?></small></strong>
+                <br>
+                <span><small style="color: #0090d2;"><?=$detadmin->tanggal?></small></span>
+                <br>
+                <button class="btn btn-sm btn-warning" style="padding:5px;"><strong><a style="color: #000; font-size: 15px;" href="<?= site_url('admin/Beranda/ubahAdmin/')?><?= $detadmin->id_kegiatan?>/<?= $this->session->userdata['auth_session']['id_user'];?>">Ubah</a></strong><br><small></small></button>
+              </div>
+          </div>
+          <?php } ?>
+          <br>
+        </div>
+        
+
+
       </div>
-    </div>
+    </form>
+
   </div>
 
-<?php $this->load->view('admin/template/footer'); ?>
+  <?php $this->load->view('admin/template/footer'); ?>

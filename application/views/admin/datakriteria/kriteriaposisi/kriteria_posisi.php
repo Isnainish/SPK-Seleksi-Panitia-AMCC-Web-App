@@ -78,7 +78,10 @@
     <div class="container-fluid">
       <div class="row">
      
-      <div class="col-lg-12">
+      <div class="col-lg-12" <?php if ($detail_kegiatan == 0) {
+          echo "hidden";
+          }?>
+      >
         <a style="color: white;" href="<?=site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi/tambahKritPos')?>"><button class="btn btn-info btn-sm">Tambah</button></a>
           </div>
           <br>
@@ -86,7 +89,16 @@
           <br>
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h3 class="h4">Informasi Data Kriteria Posisi</h3>
+              <h3 class="h4">Informasi Data Kriteria Posisi 
+                <?php foreach ($select_kegiatan->result() as $kegiatan) {
+                ?>
+                <strong style="color: #0090d2;"><?= ($kegiatan->id_kegiatan == $caripos['id_kegiatan'] ? $kegiatan->nama_kegiatan : '') ?></strong>
+                
+                <?= ($kegiatan->nama_kegiatan == $caripos['id_kegiatan'] ? : '') ?>
+
+                <?php
+              }
+              ?></h3>
             </div>
             <div class="card-body">
               <table class="table">
@@ -106,8 +118,13 @@
                   <tr>
                     <th><?= $i ?></th>
                     <td><?= $row->nama_sie ?></td>
-                    <td>
+                    <td <?php if ($detail_kegiatan == 0) {
+                        echo "hidden";
+                        }?>
+                    >
                       <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/DetailKritPosisi/')?><?= $row->id_kegiatan ?>/<?= $row->id_sie ?>" class="btn btn-info btn-sm" value="id_sie">Detail</a>
+
+                      <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi/UbahKritPos/')?><?= $row->id_sie ?>" class="btn btn-warning btn-sm" value="id_sie">Ubah</a>
 
                       <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi/DeleteKritPos/')?><?= $row->id_sie ?>" class="btn btn-danger btn-sm" >Hapus</a>
                   </tr>

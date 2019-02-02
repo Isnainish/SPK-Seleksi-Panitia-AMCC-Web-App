@@ -43,31 +43,38 @@
     <!-- Page Header-->
     <header class="page-header">
       <div class="container-fluid">
-        <h2 class="no-margin-bottom">Data Kriteria Posisi</h2>
+        <h3 class="h4" class="no-margin-bottom">Data Nilai Kriteria pada Sie-Kepanitiaan
+        <strong style="color: #0090d2;"><?php foreach ($sie->result() as $ambilnama) {
+        ?>
+        <?= $ambilnama->nama_kegiatan?>
+        <?php  } ?> </strong>
+        </h3>
       </div>
     </header>
     <br>
     <!-- Tambah kriteria -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
-          <br>
+        <div class="col-lg-7">
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h3 class="h4">Tambah Nilai Kriteria Sie-Kepanitiaan</h3>
+              <h3 class="h4">Tambah Nilai Kriteria Pada <strong style="color: #0090d2;">
+              <?php foreach ($sie->result() as $ambilnama) { ?>
+                <?= $ambilnama->nama_sie?>
+              <?php  } ?> </strong></h3>
             </div>
             <div class="card-body">
              <form method="post" action="<?= base_url() ?>index.php/admin/DataKriteria/KriteriaPosisi/DetailPosisi/addDetPos/<?= $idkegiatan?>/<?= $idsie ?>" >
 
             
-            <div class="form-group row">
-             <label class="col-sm-3 form-control-label">Pilih Kriteria</label>
-              <div class="col-sm-4">
+            <div class="form-group">
+             <label class="form-control-label">Pilih Kriteria</label>
+              <div>
                 <select class="form-control" name="id_kriteria">
                   <option value = "kriteria"> -- Pilih Kriteria -- </option>
-                  <?php foreach ($select_kriteria->result() as $row) {
+                  <?php foreach ($select_kriteria as $row) {
                   ?>
-                      <option value="<?= $row->id_kriteria ?>"><?= $row->nama_kriteria ?> </option>
+                      <option value="<?= $row->id_kriteria ?>"><?= $row->kode?> <?= $row->nama_kriteria ?></option>
 
                   <?php
                     }
@@ -75,26 +82,26 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Bobot</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="bobot" required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Keterangan</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="keterangan" required>
-              </div>
-            </div>
-            <br>
-            <div class="form-group row">
-              <div class="col-sm-4 offset-sm-3">
-
+            <div class="form-group">
+                  <label class="form-control-label">Bobot</label>
+                  <select class="form-control" name="bobot">
+                    <option value="">-- Pilihan Bobot Kriteria --</option>
+                    <option value="1"> 1 [Sangat rendah] </option>
+                    <option value="2"> 2 [Rendah] </option>
+                    <option value="3"> 3 [Cukup] </option>
+                    <option value="4"> 4 [Tinggi] </option>
+                    <option value="5"> 5 [Sangat Tinggi] </option>
+                  </select>
+                </div>
+            <div class="form-group">
+              <div>
                 <input type="submit" name="simpan_kriteria" value="Simpan" class="btn btn-primary"/>
               </div>
             </div>
             </form>
+            <div class="form-group" align="right">
+               <a style="color: white;" href="<?= site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/DetailKritPosisi/')?><?= $idkegiatan ?>/<?= $idsie ?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
+            </div>
         </div><!-- card-body -->
 
       </div><!-- card -->

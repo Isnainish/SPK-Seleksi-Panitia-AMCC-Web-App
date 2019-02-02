@@ -43,7 +43,7 @@
     <!-- Page Header-->
     <header class="page-header">
       <div class="container-fluid">
-        <h2 class="no-margin-bottom">Data Hasil</h2>
+        <h2 class="no-margin-bottom">Data Hasil Perhitungan</h2>
       </div>
     </header>
     <br>
@@ -52,23 +52,49 @@
     <div class="container-fluid">
       <div class="row" >
         <div class="col-lg-12">
-          <form action="<?= base_url()?>index.php/admin/DataHasil/Hasil/addstatus" method="POST">
-          <div class="card">
-            <div class="col-lg-12">
-              <div class="card-header d-flex align-items-center">
-                <h3 class="h4">Hasil Perangkingan</h3>
-              </div>
-              <table class="table">
-                <thead align="center">
-                  <tr>
-                    <th>No</th>
-                    <th>Nama Pendaftar</th>
-                    <th>Nilai</th>
-                    <th>Rangking</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody align="center">
+          <div align="center" class="col-md-12">
+            <div class="row-mt">
+              <?php  
+              $pilihnamakegiatan = $this->session->userdata('pilihnamakegiatan');
+              ?>
+              <form action="<?= site_url('admin/DataHasil/Hasil/doSearchKegiatan') ?>" method="POST">
+                <div class="col-lg-6">
+                  <form role="form">
+                    <div class="form-group">
+                      <select class="form-control" name="id_kegiatan">
+                        <option value = "kegiatan"> -- Pilih Nama Kegiatan -- </option>
+                        <?php foreach ($nama_kegiatan->result() as $row) {
+                          ?>
+                          <option value="<?= $row->id_kegiatan ?>" <?= ($row->id_kegiatan == $pilihnamakegiatan['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $row->nama_kegiatan?> </option>
+                          <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-info">Pilih</button>
+                  </form>         
+                </div>
+              </form>
+            </div>
+          </div>
+          <br>
+          <form action="<?= base_url()?>index.php/admin/DataHasil/Hasil/addstatus/<?=$pilihnamakegiatan['id_kegiatan']?>?>" method="POST">
+            <div class="card">
+              <div class="col-lg-12">
+                <div class="card-header d-flex align-items-center">
+                  <h3 class="h4">Hasil Perangkingan</h3>
+                </div>
+                <table class="table">
+                  <thead align="center">
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Pendaftar</th>
+                      <th>Nilai</th>
+                      <th>Rangking</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody align="center">
                   <?php 
                   $i=1;
                   foreach ($rangking as $h) {
@@ -77,30 +103,32 @@
                     <th scope="row"><?= $i ?></th>
                     <td><?= $h['nama_pendaftar']?></td>
                     <td><?= $h['hasil']?></td>
-                    <th>Rangking <?= $i ?></th>
-                  <th>
-                      <input type="checkbox" name="status[]" id="status">
-                    </th>     
+                    <td>Rangking <?= $i ?></td>
+                  <td>
+                      <input type="checkbox" name="status[]" value="<?= $h['id_rangking']?>">
+                    </td>     
                   </tr>
 
                   <?php $i++; } ?>
-                </tbody>
-              </table>
-           </div>
-          </div> <!-- card -->
-
-          <div class="form-group row">
-            <div class="col-sm-4 offset-sm-5">
-              <a href="<?=site_url('admin/DataHasil/Hasil/hasilakhir')?>"><button type="submit" class="btn btn-primary">Simpan</button></a>
+                  </tbody>
+                </table>
+              </div>
+            </div> <!-- card -->
+            <h6 class="h6">***Catatan : Simpan dan lihat data yang telah di <b>checlist</b> dengan klik tombol <b>Hasil Seleksi</b></h6>
+            <div class="form-group" <?php if ($detail_kegiatan == 0) {
+              echo "hidden";
+            } ?>>
+              <div align="right">
+                <button type="submit" class="btn btn-primary">Hasil Seleksi</button>
+              </div>
             </div>
-          </div>
 
           </form>
           <br>  
         </div>
       </div> <!-- row -->
     </div> <!-- container-fluid -->
-   
+
     <!-- Hasil Rekomendasi -->
     <div class="container-fluid">
       <div class="row" >

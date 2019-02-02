@@ -13,7 +13,7 @@
     </div> 
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
-      <<li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda</a></li>
+      <li><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda</a></li>
 
       <li><a href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"> <i class="icon-user"></i>Data Pendaftar </a></li>
 
@@ -51,7 +51,10 @@
     <!-- input kriteria -->
     <div class="col-md-12">
       <div class="row-mt">
-        <div class="button" style="margin-left: 15px;">
+        <div class="button" style="margin-left: 15px;"
+        <?php if ($detail_kegiatan == 0) {
+          echo "hidden";
+        }?>>
           <a style="color: white;" href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria/tambahHimp')?>"><button class="btn btn-info btn-sm">Tambah</button></a>
         </div>
         <br>
@@ -78,7 +81,7 @@
                 <option value = "kriteria"> -- Pilih Kriteria -- </option>
                 <?php foreach ($select_option->result() as $row) {
                   ?>
-                  <option value="<?= $row->id_kriteria ?>" <?= ($row->id_kriteria == $cari['id_kriteria'] ? 'selected="selected"' : '') ?>> <?= $row->nama_kriteria?> </option>
+                  <option value="<?= $row->id_kriteria ?>" <?= ($row->id_kriteria == $cari['id_kriteria'] ? 'selected="selected"' : '') ?>> <?= $row->kode?> <?= $row->nama_kriteria?> </option>
 
                   <?php
                 }
@@ -106,7 +109,9 @@
             <strong>
               <?php foreach ($select_option->result() as $row) {
                 ?>
-                <?= ($row->id_kriteria == $cari['id_kriteria'] ? $row->nama_kriteria : '') ?>
+                <strong style="color: #0090d2;"><?= ($row->id_kriteria == $cari['id_kriteria'] ? $row->nama_kriteria : '') ?></strong>
+                
+                <?= ($row->id_kriteria == $cari['id_kriteria'] ? $row->kode : '') ?>
 
                 <?php
               }
@@ -136,7 +141,9 @@
                     <td><?= $row->nilai_himpunan ?></td>
                     <td><?= $row->bobot ?></td>
                     <td><?= $row->keterangan ?></td>
-                    <td>
+                    <td <?php if ($detail_kegiatan == 0) {
+                      echo "hidden";
+                    }?>>
 
                      <a href="<?= site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria/editHimp/')?><?= $row->id_kegiatan ?>/<?= $row->id_himp ?>" class="btn btn-warning btn-sm" >Ubah</a>
 

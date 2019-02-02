@@ -50,68 +50,66 @@
     <!-- Tambah kriteria -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
-          <br>
+        <div class="col-lg-5">
+
           <div class="card">
             <div class="card-header d-flex align-items-center">
               <h3 class="h4">Tambah Kriteria</h3>
             </div>
-            <div class="card-body">
+          <div class="card-body">
             <form method="post" action="<?= base_url() ?>index.php/admin/DataKriteria/Kriteria/Kriteria/addKriteria">
-             <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Kepanitiaan</label>
-                          <div class="col-sm-4">
-                           <select class="form-control" name="id_kegiatan">
-                            <option>-- Pilih Nama Kegiatan --</option>
-                            <?php foreach ($select_option->result() as $row) {
-                            ?>
-                              <option value="<?= $row->id_kegiatan ?>"><?= $row->nama_kegiatan ?> </option>
+              <div class="form-group">
+                <label class="form-control-label">Kepanitiaan</label>
+                <div>
+                 <select class="form-control" name="id_kegiatan">
+                  <option>-- Pilih Nama Kegiatan --</option>
+                  <?php foreach ($select_event->result() as $row) {
+                  ?>
+                    <option value="<?= $row->id_kegiatan ?>"><?= $row->nama_kegiatan ?> </option>
+                  <?php
+                    }
+                  ?>
+                 </select>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="form-control-label">Pilih Kriteria</label>
+                  <div>
+                    <select class="form-control" name="id_kriteria">
+                      <option value = "kriteria"> -- Pilih Kriteria -- </option>
+                      <?php foreach ($select_kriteria->result() as $row) {
+                        ?>
+                        <option value="<?= $row->id_kriteria ?>"><?= $row->kode?> <?= $row->nama_kriteria ?> </option>
 
-
-                            <?php
-                              }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Nama Kriteria</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="nama_kriteria" required>
+                        <?php
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              <div class="form-group">
+                <label class="form-control-label">Kode</label>
+                  <input type="text" class="form-control" name="kode_kriteria" placeholder="kode kriteria" required>
               </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Kode</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="kode_kriteria" required>
+              <div class="form-group">
+                <label class="form-control-label">Bobot</label>
+                  <input type="text" class="form-control" name="bobot_kriteria" placeholder="bobot kriteria" required>
+                  <small>gunakan titik untuk bilangan desimal</small>
               </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Bobot</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="bobot_kriteria" required>
+              <div class="form-group">
+                <label class="form-control-label">Keterangan</label>
+                  <input type="text" class="form-control" name="ket_kriteria" placeholder="keterangan" required>
               </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Keterangan</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="ket_kriteria" required>
-              </div>
-            </div>
-            <br>
-            <div class="form-group row">
-              <div class="col-sm-4 offset-sm-3">
-                
-                <a href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria')?>"><input type="submit" name="simpan_kriteria" class="btn btn-primary"></a>
-                
-              </div>
-            </div>
+              <input type="submit" value="Simpan" class="btn btn-info">
             </form>
+            <div class="form-group" align="right">       
+              <a style="color: white;" href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
+            </div>
           </div><!-- card-body -->
 
-        </div><!-- card -->
-      </div>
-    </div><!-- row -->
-  </div>
+      </div><!-- card -->
+    </div>
+  </div><!-- row -->
+</div>
 
-  <?php $this->load->view('admin/template/footer'); ?>
+<?php $this->load->view('admin/template/footer'); ?>

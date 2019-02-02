@@ -26,6 +26,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function loginAdmin($user, $pass, $jabatan){
 			$this->db->from('tb_detail_user duser');
 			$this->db->join('tb_user user','user.id_user = duser.id_user');
+			$this->db->join('tb_kegiatan k','k.id_kegiatan = duser.id_kegiatan');
 			$this->db->join('tb_level level','level.id_level = duser.id_level');
 			$this->db->where('user.username', $user);
 			$this->db->where('user.password', $pass);

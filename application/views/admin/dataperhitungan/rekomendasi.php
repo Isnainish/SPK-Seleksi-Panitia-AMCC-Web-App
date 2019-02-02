@@ -120,8 +120,11 @@
             </div>
           </div>
           
-          <div class="button" align="center">
-            <a style="color: white;" href="<?=site_url('admin/DataPerhitungan/Rekomendasi/viewNilai/')?><?= $posisi['id_kegiatan']?>"><button class="btn btn-info btn-sm">Hitung</button></a>
+          <div class="button" align="center"
+          <?php if ($detail_kegiatan == 0) {
+          echo "hidden";
+          }?>>
+            <a style="color: white;" href="<?=site_url('admin/DataPerhitungan/Rekomendasi/viewNilai/')?><?= $posisi['id_kegiatan']?>"><button class="btn btn-info btn-sm">Detail</button></a>
           </div>
           <br>
           

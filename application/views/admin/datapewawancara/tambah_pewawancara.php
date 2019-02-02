@@ -77,7 +77,7 @@
               <div class="form-group">
                 <label class="form-control-label">Nama Lengkap</label>
                 <!-- dari database -->
-                <select class="form-control" name="nama">
+                <select class="form-control" name="id_user">
                   <option>-- Pilih Nama Pengguna --</option>
                   <?php foreach ($pilih_nama->result() as $nama) {
                     ?>
@@ -87,20 +87,10 @@
                   }
                   ?>
                 </select>
-                <!-- dari inputan manual -->
-                <input type="text" placeholder="nama lengkap" class="form-control" name="nama">
                 
+              <small><a style="color: red;" href="<?= site_url('admin/Pewawancara/tambahPewawancaras')?>">Ketik Manual Nama Pewawancara</a></small>
               </div>
-              <div class="form-group">
-                <label class="form-control-label">Username</label>
-                <input type="text" placeholder="username" class="form-control" name="username" required>
-              </div>
-              <div class="form-group">       
-                <label class="form-control-label">Password</label>
-                <input type="password" placeholder="password" class="form-control" name="password" required>
-              </div>
-              
-              <input type="submit" value="Simpan" class="btn btn-primary">
+              <input type="submit" value="Simpan" class="btn btn-info">
             </form>
             <div class="form-group" align="right">       
               <a style="color: white;" href="<?= site_url('admin/Pewawancara')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>

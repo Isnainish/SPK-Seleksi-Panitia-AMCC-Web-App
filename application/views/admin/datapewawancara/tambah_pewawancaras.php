@@ -51,50 +51,53 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-5">
-
+          
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h3 class="h4">Ubah Pewawancara</h3>
+              <h3 class="h4">Tambah Pewawancara</h3>
             </div>
             <div class="card-body">
-              <form method="post" action="<?= site_url('admin/Pewawancara/doEditPewawancara/'.$detail['id_detail_user'])?>">
+              <form method="post" action="<?= base_url() ?>index.php/admin/Pewawancara/addPewawancaras">
                 <div class="form-group">
                   <label class="form-control-label">Kepanitiaan</label>
                   <div>
-                    <select class="form-control" name="id_kegiatan">
-                      <option>-- Pilih Nama Kegiatan --</option>
-                      <?php foreach ($pilih_kegiatan->result() as $kegiatan) {
-                        ?>
-                        <option value="<?= $kegiatan->id_kegiatan ?>"<?= ($kegiatan->id_kegiatan == $detail['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $kegiatan->nama_kegiatan?> </option>
-
-                        <?php
-                      }
+                   <select class="form-control" name="id_kegiatan">
+                    <option>-- Pilih Nama Kegiatan --</option>
+                    <?php foreach ($pilih_kegiatan->result() as $kegiatan) {
                       ?>
-                    </select>
-                  </div>
+                      <option value="<?= $kegiatan->id_kegiatan ?>"><?= $kegiatan->nama_kegiatan ?> </option>
+
+                      <?php
+                    }
+                    ?>
+
+                  </select>
                 </div>
-                <div class="form-group">
-                  <label class="form-control-label">Nama Lengkap</label>
-                  <input type="text" placeholder="nama lengkap" class="form-control" name="nama" value="<?= set_value('nama', $detail['nama']) ?>">
-                </div>
-                <div class="form-group">
-                  <label class="form-control-label">Username</label>
-                  <input type="text" placeholder="username" class="form-control" name="username" value="<?= set_value('username', $detail['username']) ?>">
-                </div>
-                <div class="form-group">       
-                  <label class="form-control-label">Password</label>
-                  <input type="password" placeholder="password" class="form-control" name="password" value="<?= set_value('password', $detail['password']) ?>">
-                </div>       
-                <input type="submit" value="Simpan" class="btn btn-primary">
-              </form>
-              <div class="form-group" align="right">       
-                <a style="color: white;" href="<?= site_url('admin/Pewawancara')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
               </div>
-            </div><!-- card-body -->
+              <div class="form-group">
+                <label class="form-control-label">Nama Lengkap</label>
+                <input type="text" placeholder="nama" class="form-control" name="nama" required>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Username</label>
+                <input type="text" placeholder="username" class="form-control" name="username" required>
+              </div>
+                 
+              <div class="form-group">       
+                <label class="form-control-label">Password</label>
+                <input type="password" placeholder="password" class="form-control" name="password" required>
+              </div>
+              
+              <input type="submit" value="Simpan" class="btn btn-info">
+            </form>
+            <div class="form-group" align="right">       
+              <a style="color: white;" href="<?= site_url('admin/Pewawancara')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
+            </div>
+          </div><!-- card-body -->
 
-          </div><!-- card -->
-        </div>
-      </div><!-- row -->
-    </div> 
+        </div><!-- card -->
+      </div>
+    </div><!-- row -->
+  </div> 
 
-    <?php $this->load->view('admin/template/footer'); ?>
+  <?php $this->load->view('admin/template/footer'); ?>

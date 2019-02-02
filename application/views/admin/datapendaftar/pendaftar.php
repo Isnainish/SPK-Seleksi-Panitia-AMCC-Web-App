@@ -88,11 +88,11 @@
               <thead align="center">
                 <tr>
                   <th width="5%">No</th>
-                  <th width="15%">NIM</th>
-                  <th width="25%">Nama Pendaftar</th>
+                  <th width="10%">NIM</th>
+                  <th width="20%">Nama Pendaftar</th>
                   <th width="25%">Alamat</th>
                   <th width="15%">Program Studi</th>
-                  <th colspan="2" width="15%">Aksi</th>
+                  <th colspan="2" width="25%">Aksi</th>
                 </tr>
               </thead>
               <tbody align="center">
@@ -107,9 +107,13 @@
                     <td><?= $row->nama_pendaftar ?></td>
                     <td><?= $row->alamat ?></td>
                     <td><?= $row->program_studi ?></td>
-                    <td>
+                    <td <?php if ($detail_kegiatan == 0) {
+                      echo "hidden";
+                    }?>>
 
                       <a href="<?= site_url('admin/DataPendaftar/Pendaftar/DetailPendaftar/')?><?= $row->id_pendaftar ?>" class="btn btn-info btn-sm">Detail</a>
+                      <a href="<?= site_url('admin/DataPendaftar/Pendaftar/EditPendaftar/')?><?= $row->id_pendaftar ?>" class="btn btn-warning btn-sm">Ubah</a>
+                      <a href="<?= site_url('admin/DataPendaftar/Pendaftar/DeletePendaftar/')?><?= $row->id_pendaftar ?>" class="btn btn-danger btn-sm">Hapus</a>
                       
                     </tr>
 

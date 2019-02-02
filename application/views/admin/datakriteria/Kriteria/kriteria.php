@@ -47,16 +47,10 @@
       </div>
     </header>
     <br>
-    <!-- informasi Kriteria -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-        <!-- input kegiatan -->
     <div align="center" class="col-md-12">
       <div class="row-mt">
-
-        <?php  
-        $search = $this->session->userdata('search');
+      <?php  
+        $cari = $this->session->userdata('cari');
         ?>
         <form action="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/doSearchKegiatan') ?>" method="POST">
           <div class="col-lg-6">
@@ -64,9 +58,9 @@
               <div class="form-group">
                 <select class="form-control" name="id_kegiatan">
                   <option value = "kegiatan"> -- Pilih Nama Kegiatan -- </option>
-                  <?php foreach ($select_option->result() as $row) {
+                  <?php foreach ($select_event as $row) {
                   ?>
-                    <option value="<?= $row->id_kegiatan ?>" <?= ($row->id_kegiatan == $search['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $row->nama_kegiatan?> </option>
+                    <option value="<?= $row->id_kegiatan ?>" <?= ($row->id_kegiatan == $cari['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $row->nama_kegiatan?> </option>
                     <?php
                     }
                   ?>
@@ -77,11 +71,20 @@
           </div>
         </form>
       </div>
-    </div> 
-          <div class="button">
-            <a style="color: white;" href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/tambahKriteria/') ?><?= $search['id_kegiatan']?>"><button class="btn btn-info btn-sm">Tambah</button></a>
+    </div>
+    <br>
+    <!-- informasi Kriteria -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12" <?php if ($detail_kegiatan == 0) {
+          echo "hidden";
+          }?>
+      >
+        <a style="color: white;" href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria/tambahKriteria')?>"><button class="btn btn-info btn-sm">Tambah</button></a>
           </div>
           <br>
+          <br>
+        <div class="col-lg-12"> 
           <div class="card">
             <div class="card-header d-flex align-items-center">
               <h3 class="h4">Informasi Data Kriteria</h3>
@@ -95,13 +98,13 @@
                     <th width="10%">Kode</th>
                     <th width="10%%">Bobot</th>
                     <th width="20%">Keterangan</th>
-                    <th width="20%">Aksi</th>
+                    <th width="10%">Aksi</th>
                   </tr>
                 </thead>
                 <tbody align="center">
                   <?php 
                     $i = 1;
-                    foreach ($listKriteria->result() as $row) {                    
+                    foreach ($listKriteria as $row) {                    
                   ?>
 
                   <tr>
@@ -109,14 +112,12 @@
                     <td><?= $row->nama_kriteria ?></td>
                     <td><?= $row->kode ?></td>
                     <td><?= $row->bobot ?></td>
-                    <td><?= $row->keterangan ?></td>
-                    <td>
-                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/editKriteria/') ?><?= $row->id_kriteria ?>" class="btn btn-warning btn-sm" >Ubah</a>
-
-                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/DeleteKriteria/') ?><?= $row->id_kriteria ?>" class="btn btn-danger btn-sm" >Delete</a>
+                    <td><?= $row->keterangan ?></td>                    
+                    <td <?php if ($detail_kegiatan == 0) {
+                      echo "hidden";
+                    }?>>
+                      <a href="<?= site_url('admin/DataKriteria/Kriteria/Kriteria/edit/')?><?= $row->id_kegiatan ?>/<?= $row->id_kriteria ?>" class="btn btn-warning btn-sm" >Ubah</a>
                     </td>
-                    
-
                   </tr>
 
                   <?php 

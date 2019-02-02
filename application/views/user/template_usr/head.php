@@ -43,9 +43,10 @@
               <div class="navbar-header">
                 <!-- Navbar Brand -->
                 <a href="index.html" class="navbar-brand">
-                  <div class="brand-text brand-big"><span>S P K Seleksi</span><strong> PanitiaKegiatan</strong></div>
+                  <div class="brand-text brand-big"><span>S P K Seleksi</span><strong> Panitia Kegiatan</strong></div>
                   </a>
               </div>
+
               
               <!-- Navbar Menu -->
             </div>

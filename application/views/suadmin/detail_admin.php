@@ -52,7 +52,7 @@
                   <td width="70%"><strong>Admin</strong></td>        
                 </tr>
                 <tr>
-                  <td width="30%"><strong>Tanggal Pelaksanaan</strong></td>
+                  <td width="30%"><strong>Tanggal Pelaksanaan Seleksi Panitia</strong></td>
                   <td width="70%"><?= $det->tanggal ?></td>        
                 </tr>
                 <tr>

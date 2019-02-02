@@ -22,7 +22,7 @@
                     <div class="form-group">
                       <select class="form-control" name="id_kegiatan">
                         <option value = "kegiatan"> -- Pilih Nama Kegiatan -- </option>
-                        <?php foreach ($namakegiatan as $name) {
+                        <?php foreach ($namakegiatan->result() as $name) {
                          ?>
                          <option value="<?= $name->id_kegiatan ?>"<?= ($name->id_kegiatan == $draftnama['id_kegiatan'] ? 'selected="selected"' : '') ?>> <?=$name->nama_kegiatan?></option>
                          <?php 
@@ -39,7 +39,7 @@
             <div class="card-header d-flex align-items-center">
               <h3 class="h4">Daftar Peserta
                 <strong style="color: #0090d2;">
-                  <?php foreach ($namakegiatan as $name) {
+                  <?php foreach ($namakegiatan->result() as $name) {
                     ?>
                     <?= ($name->id_kegiatan == $draftnama['id_kegiatan'] ? $name->nama_kegiatan : '') ?>
 

@@ -41,7 +41,7 @@
               <h3 class="h4">Ubah Super Admin</h3>
             </div>
             <div class="card-body">
-              <form method="post" action="<?= site_url('suadmin/SuAdmin/editSuad')?>">
+              <form method="post" action="<?= site_url('suadmin/SuAdmin/editSuad/'.$edtsuad['id_user'])?>">
                 <div class="form-group">
                   <label class="form-control-label">Nama</label>
                   <input type="text" placeholder="nama lengkap" class="form-control" name="nama" required value="<?= set_value('nama', $edtsuad['nama'])?>">
@@ -56,9 +56,11 @@
                 </div>
                 <div class="form-group">       
                   <input type="submit" value="Simpan" class="btn btn-primary">
-                  <a style="color: white;" href="<?= site_url('suadmin/SuAdmin')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
                 </div>
               </form>
+              <div class="form-group" align="right">       
+                  <a style="color: white;" href="<?= site_url('suadmin/SuAdmin')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
+                </div>
             </div><!-- card-body -->
 
           </div><!-- card -->

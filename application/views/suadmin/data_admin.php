@@ -56,22 +56,21 @@
                   <div class="feed d-flex justify-content-between"> 
                     
                     <table class="feed-body d-flex justify-content-between"> 
+                      <tbody>
                       <tr>
                         <td width="5%"><a href="#" class="feed-profile"><img src="<?=base_url('assets/img/amcc-logo.png')?>" alt="person" class="img-fluid rounded-circle"></a></td>     
-                        <td width="50%">
+                        <td width="95%">
                           <h3><?=$row->nama?></h3>
                           <h6><?=$row->nama_kegiatan?></h6>
                           <span><?=$row->tanggal?></span>
-
-                          <br>
+                          
                           <div class="CTAs">
                             <a href="<?=site_url('suadmin/SuAdmin/DetailAdmin/')?><?=$row->id_detail_user?>" class="btn btn-info">Detail</a>
-                            <a href="<?=site_url('suadmin/SuAdmin/UbahAdmin/')?><?= $row->id_detail_user?>" class="btn btn-xs btn-warning">Ubah</a>
                             <a href="<?=site_url('suadmin/SuAdmin/HapusAdmin/')?><?= $row->id_detail_user?>" class="btn btn-xs btn-danger">Hapus</a>
                           </div>
                         </td>
-
                       </tr>
+                      </tbody>
                     </table>
 
                   </div>
@@ -83,6 +82,7 @@
             </div>
             <a style="color: white;" href="<?= site_url('suadmin/SuAdmin')?>"><button class="btn btn-secondary btn-sm" style="padding: 10px;"> Kembali</button></a>
           </div>
+          <br>
 
               </div>          
             </div><!-- row -->

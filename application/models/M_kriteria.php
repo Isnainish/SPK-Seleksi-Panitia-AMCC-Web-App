@@ -16,42 +16,34 @@
 			parent::__construct();
 		}
 
-		public function getAllKriteria($id_kegiatan) {
-			$this->db->select('krit.*,k.*');
-			$this->db->from('tb_kegiatan k');
-			$this->db->join('tb_kriteria krit', 'krit.id_kegiatan = k.id_kegiatan');
-			
-			$this->db->where(array('krit.id_kegiatan' => $id_kegiatan));
-
-			return $this->db->get();
-		}
-
-		public function getKegiatan() {
+		public function getAllEvent(){
 			$this->db->from($this->kegiatan);
+			return $this->db->get()->result();
+		}
+
+		public function getAllKriteria($id_kegiatan) {
+			$this->db->from('tb_kriteria');
+			$this->db->where('id_kegiatan',$id_kegiatan);
+			return $this->db->get()->result();
+		}
+
+		public function getKegiatan($idUser, $idLevel) {
+			$this->db->from('tb_detail_user duser');
+			$this->db->join('tb_kegiatan kegiatan', 'kegiatan.id_kegiatan = duser.id_kegiatan');
+			$this->db->join('tb_user user', 'user.id_user = duser.id_user');
+			$this->db->where('duser.id_level', $idLevel);
+			$this->db->where('duser.id_user', $idUser);
 			return $this->db->get();
 		}
 
-		/*add*/
-		public function addNewKriteria($data) {
-			$this->db->insert($this->table, $data);
-		}
-
-		/*Edit*/
-		public function getKriteria($id){
-			return $this->db->get_where($this->table, $id)->row_array();
-		}
-		
-		public function doUpdateKriteria($id, $data)
+		public function getAllDetailKegiatan($id_kegiatan, $id_level, $id_user)
 		{
-			$this->db->where($id);
-			$this->db->update($this->table, $data);
-		}
-
-
-		/*Delete*/
-		public function DeleteNewKriteria($id_kriteria){
-			$this->db->where('id_kriteria', $id_kriteria);
-			$this->db->delete($this->table);
+			$this->db->from('tb_detail_user duser');
+			$this->db->where('duser.id_kegiatan', $id_kegiatan);
+			$this->db->where('duser.id_level' , $id_level);
+			$this->db->where('duser.id_user' , $id_user);
+			$result = $this->db->get(); 
+			return $result -> result_array();
 		}
 
 	}

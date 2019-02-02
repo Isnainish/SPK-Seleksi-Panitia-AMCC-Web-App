@@ -45,12 +45,10 @@
               <div class="card-body">
                 <form class="form-inline" method="post" action="<?= base_url() ?>index.php/suadmin/SuAdmin/addDataKegiatan">
                   <div class="form-group">
-                    <label for="inlineFormInput" class="sr-only">Nama Kegiatan</label>
                     <input id="inlineFormInput" type="text" placeholder="Nama Kegiatan" name="nama_kegiatan" class="mr-3 form-control">
                   </div>
                   <div class="form-group">
-                    <label for="inlineFormInputGroup" class="sr-only">Tanggal Pelaksanaan</label>
-                    <input id="inlineFormInputGroup" type="text" placeholder="Tanggal Pelaksanaan" name="tanggal" class="mr-3 form-control">
+                    <input id="inlineFormInputGroup" type="text" placeholder="Tanggal Seleksi Panitia" name="tanggal" class="mr-3 form-control" >
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-info">Simpan</button>
@@ -70,7 +68,7 @@
                 <tr>
                   <th width="5%">No</th>
                   <th width="50%">Nama Kegiatan</th>
-                  <th width="30%">Tanggal Pelaksanaan</th>
+                  <th width="30%">Tanggal Pelaksanaan Seleksi Panitia</th>
                   <th colspan="2" width="15%">Aksi</th>
                 </tr>
               </thead>

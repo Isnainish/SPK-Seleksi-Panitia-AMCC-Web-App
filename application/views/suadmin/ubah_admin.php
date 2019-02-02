@@ -71,11 +71,12 @@
                         <input type="password" placeholder="password" class="form-control" name="password" required value="<?= set_value('password', $edit['password']) ?>">
                       </div>
 
-                    <div class="form-group">       
                       <input type="submit" value="Simpan" class="btn btn-info">
-                      <a style="color: white; " href="<?= site_url('suadmin/SuAdmin/DataKegiatan')?>"><button class="btn btn-secondary btn-sm" style="padding:8px;"> Kembali</button></a>
-                    </div>
+                   
                   </form>
+                   <div class="form-group" align="right">       
+                      <a style="color: white; " href="<?= site_url('suadmin/SuAdmin/DataAdmin')?>"><button class="btn btn-secondary btn-sm" style="padding:8px;"> Kembali</button></a>
+                    </div>
 
                   
           </div><!-- card-body -->

@@ -43,7 +43,7 @@
     <!-- Page Header-->
     <header class="page-header">
       <div class="container-fluid">
-        <h2 class="no-margin-bottom">Langkah Perhitungan Metode SAW untuk Merekomendasikan Posisi Kepanitiaan</h2>
+        <h2 class="no-margin-bottom">Perhitungan Metode SAW untuk Merekomendasikan Posisi Kepanitiaan</h2>
       </div>
     </header>
     <br>
@@ -58,7 +58,9 @@
             </div>
             <br>
             <!-- Tampilkan nama Sie -->
-            <?php foreach ($sie as $s) { ?>
+            <?php
+            $u = 0; 
+            foreach ($sie as $s) { ?>
               <h5 style="color:#17a2b8;"><?= $s['nama_sie']?></h5>
             
 
@@ -81,9 +83,11 @@
                   </tr>   
                 </thead>
                 <tbody align="center">                
-                   <?php 
+                   
+                
+                <?php 
                    $i=1;
-                   foreach ($pendaftar as $val) { ?>
+                   foreach ($pendaftar[$u] as $val) { ?>
                    <tr>
                      <td><?= $i?></td>
                      <td><?= $val['nama_pendaftar']; ?></td>
@@ -97,15 +101,14 @@
                    </tr>
                    <?php $i++;} ?>
                 </tbody>
-
               </table>
               
               <div class="button">
-                <a style="color: white;" href="<?=site_url('admin/DataPerhitungan/Rekomendasi/hitungrekomendasi/')?><?= $s['id_sie']?>"><button class="btn btn-info btn-sm">Detail</button></a>
-               </div>
-               <br>
+                <a style="color: white;" href="<?=site_url('admin/DataPerhitungan/Rekomendasi/hitungrekomendasi/')?><?= $s['id_kegiatan']?>/<?= $s['id_sie']?>"><button class="btn btn-info btn-sm">Hitung</button></a>
+              </div>
+              <br>
             
-            <?php } ?>
+            <?php $u++; } ?>
 
           </div>
  

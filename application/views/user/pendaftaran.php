@@ -51,22 +51,25 @@
               <div class="col-sm-5 select">
                 <select class="form-control" name="id_kegiatan">
                   <option value = "kegiatan"> -- Pilih Nama Kegiatan -- </option>
-                  <?php foreach ($kegiatanamcc->result() as $k) {
+                  <?php foreach ($kegiatanamcc->result() as $row) {
                     ?>
-                    <option value="<?= $k->id_kegiatan ?>" <?= ($k->id_kegiatan == $addkegiatan['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $k->nama_kegiatan?> </option>
+                    <option value="<?= $row->id_kegiatan ?>" <?= ($row->id_kegiatan == $addkegiatan['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $row->nama_kegiatan?> </option>
                     <?php
                   }
                   ?>
                 </select>
               </div>
             <div class="col-sm-4 offset-sm-3" align="center">
-              <button type="submit" class="btn btn-primary">Pilih</button>
+              <button type="submit" class="btn btn-primary" name="namakegiatan">Pilih</button>
             </div>
             </div>
           </form> 
 
         </div>
       </form>
+     <?php if ($addkegiatan['id_kegiatan'] > 0 ) {
+       
+     ?>
       <!-- input data pendaftar -->
       <form class="form-horizontal" method="post" action="<?= site_url('user/FormPendaftar/processaddPendaftar/')?><?= $addkegiatan['id_kegiatan']?>" enctype="multipart/form-data" style="margin-left: 5%;">
         <p style="color: red; font-size: 14px;"><strong>*Masukkan Data Diri dengan Benar, Cek kembali sebelum di submit !</strong></p>
@@ -194,6 +197,8 @@
           </div>
         </div>
       </form>
+
+      <?php } ?>
       </div><!-- card-body -->
 
       <div class="card-footer" style="margin-right: 13%; margin-left: 13%; background-color: white;" >        

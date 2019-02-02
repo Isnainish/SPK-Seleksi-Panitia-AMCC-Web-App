@@ -43,7 +43,12 @@
     <!-- Page Header-->
     <header class="page-header">
       <div class="container-fluid">
-        <h2 class="no-margin-bottom">Data Nilai pada Setiap Sie-Kepanitiaan</h2>
+        <h3 class="h4" class="no-margin-bottom">Data Nilai Kriteria pada Sie-Kepanitiaan
+        <strong style="color: #0090d2;"><?php foreach ($sie->result() as $ambilnama) {
+        ?>
+        <?= $ambilnama->nama_kegiatan?>
+        <?php  } ?> </strong>
+        </h3>
       </div>
     </header>
     <br>
@@ -51,24 +56,27 @@
     <!-- informasi Kriteria Posisi -->
     <div class="container-fluid">
       <div class="row">
-      
-      <div class="button">
+
         <div class="col-lg-12">
-        <div>
-        <a style="color: white;" href="<?=site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/tambahDetPos/')?><?= $idkegiatan ?>/<?= $idsie ?>"><button class="btn btn-info btn-sm">Tambah</button></a>
-        </div>
+          <div>
+            <a style="color: white;" href="<?=site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/tambahDetPos/')?><?= $idkegiatan ?>/<?= $idsie ?>"><button class="btn btn-info btn-sm">Tambah</button></a>
+          </div>
           <br>
+          
           <div class="card">
-            <div class="card">
-              
+            <div class="card-header d-flex align-items-center">
+              <h3 class="h4"><strong style="color: #0090d2;">
+              <?php foreach ($sie->result() as $ambilnama) { ?>
+                <?= $ambilnama->nama_sie?>
+              <?php  } ?> </strong></h3>
             </div>
             <div class="card-body">
               <table class="table">
                 <thead align="center">
                   <tr>
                     <th width="5%">No</th>
-                   
-                    <th width="10%">Kriteria</th>
+
+                    <th width="20%">Kriteria</th>
                     <th width="5%">Bobot</th>
                     <th width="10%">Keterangan</th>
                     <th width="20%">Aksi</th>
@@ -76,33 +84,35 @@
                 </thead>
                 <tbody align="center">
                   <?php 
-                    $i = 1;
-                    foreach ($detailpos as $row) {                    
-                  ?>
+                  $i = 1;
+                  foreach ($detailpos as $row) {                    
+                    ?>
+  
+                    <tr>
+                      <th><?= $i ?></th>
+                      <td><?= $row->nama_kriteria ?>
+                      </td>
+                      <td><?= $row->bobot ?></td>
+                      <td><?= $row->keterangan ?></td>
+                      <td>
+                        <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/editDetailPos/')?><?= $row->id_kegiatan.'/'.$row->id_sie.'/'.$row->id_kriteria_posisi ?>" class="btn btn-warning btn-sm" >Ubah</a>
 
-                  <tr>
-                    <th><?= $i ?></th>
-                    <td><?= $row->nama_kriteria ?>
-                    </td>
-                    <td><?= $row->bobot ?></td>
-                    <td><?= $row->keterangan ?></td>
-                    <td>
-                      <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/editDetailPos/')?><?= $row->id_kriteria_posisi ?>" class="btn btn-warning btn-sm" >Ubah</a>
+                        <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/DeleteDetailPos/')?><?= $row->id_kegiatan.'/'.$row->id_sie.'/'.$row->id_kriteria_posisi ?>" class="btn btn-danger btn-sm" >Hapus</a>
+                      </td>
 
-                      <a href="<?= site_url('admin/DataKriteria/KriteriaPosisi/DetailPosisi/DeleteDetailPos/')?><?= $row->id_kegiatan.'/'.$row->id_sie.'/'.$row->id_kriteria_posisi ?>" class="btn btn-danger btn-sm" >Hapus</a>
-                    </td>
+                    </tr>
 
-                  </tr>
-
-                  <?php 
-                  $i++;
-                    }
+                    <?php 
+                    $i++;
+                  }
                   ?>
                 </tbody>
               </table>
             </div><!-- card-body -->
+          </div>
+          <div class="form-group" align="left">
+               <a style="color: white;" href="<?= site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
             </div>
-          </div><!-- card -->
         </div>
       </div><!-- row -->
     </div> 

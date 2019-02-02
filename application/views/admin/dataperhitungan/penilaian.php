@@ -142,7 +142,10 @@
                </p>
             </div>
           </div>
-          <div class="button" align="center">
+          <div class="button" align="center" 
+          <?php if ($detail_kegiatan == 0) {
+          echo "hidden";
+          }?>>
             <a style="color: white;" href="<?=site_url('admin/DataPerhitungan/Perhitungan/hitung/')?><?= $carinama['id_kegiatan']?>"><button class="btn btn-info btn-sm">Hitung</button></a>
           </div>
           <br>

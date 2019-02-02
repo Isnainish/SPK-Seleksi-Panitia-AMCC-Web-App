@@ -69,8 +69,10 @@
                 <table class="col-lg-12">
                   <thead align="center">
                     <th width="5%">No.</th>
-                    <th width="70%">Nama Kegiatan</th>  
-                    <th width="25%">Status</th>
+                    <th width="50%">Nama Kegiatan</th>  
+                    <th width="15%">Usernama</th>  
+                    <th width="15%">Password</th> 
+                    <th width="15%">Status</th> 
                     
                   </thead>
                   <tbody align="center">
@@ -82,6 +84,8 @@
                         ?>
                         <td><?= $i ?></td>
                         <td><?= $info->nama_kegiatan ?></td>
+                        <td><?= $info->username ?></td>
+                        <td><?= $info->password ?></td>
                         <td><?= $info->nama_level ?></td>
 
                         <?php 

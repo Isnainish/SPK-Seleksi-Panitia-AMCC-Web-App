@@ -50,41 +50,24 @@
     <!-- informasi Kriteria -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
-          <br>
+        <div class="col-lg-6">
           <div class="card"> 
-            <div class="card-header d-flex align-items-center">
-              <h3 class="h4">Ubah Nilai Sub-Kriteria</h3>
-            </div>
+            
             <div class="card-body">
-            <form method="post" action="<?= site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria/doEditHimpunan/'.$detail['id_himp'])?>">
-              <div class="form-group row">
-                
+            <form method="post" action="<?= site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria/doEditHimpunan/'.$himp['id_himp'])?>">
 
-                  <label class="col-sm-3 form-control-label">Kepanitiaan</label>
-                  <div class="col-sm-4">
-                   <select class="form-control" name="id_kegiatan">
-                    <option>-- Pilih Nama Kegiatan --</option>
-                    <?php foreach ($select_kegiatan as $k) {
-                    ?>
-                      <option value="<?= $k->id_kegiatan ?>"<?= ($k->id_kegiatan == $detail['id_kegiatan'] ? 'selected="selected"' : '') ?>><?= $k->nama_kegiatan?> </option>
+              <div class="card-header d-flex align-items-center">
+              <h3 class="h4">Ubah Nilai Sub-Kriteria <br><strong style="color: #0090d2;"><?= $himp['nama_kegiatan']?></strong></h3>
+            </div>
 
-                    <?php
-                      }
-                    ?>
-                  </select>
-                </div>
-              </div>
-              
-
-            <div class="form-group row">
-             <label class="col-sm-3 form-control-label">Pilih Kriteria</label>
-              <div class="col-sm-4">
+            <div class="form-group">
+             <label class="form-control-label">Pilih Kriteria</label>
+              <div>
                 <select class="form-control" name="id_kriteria">
                   <option value = "kriteria"> -- Pilih Kriteria -- </option>
                   <?php foreach ($select_option->result() as $row) {
                   ?>
-                      <option value="<?= $row->id_kriteria ?>"<?= ($row->id_kriteria == $detail['id_kriteria'] ? 'selected="selected"' : '') ?>><?= $row->nama_kriteria?> </option>
+                      <option value="<?= $row->id_kriteria ?>"<?= ($row->id_kriteria == $himp['id_kriteria'] ? 'selected="selected"' : '') ?>><?= $row->kode?> <?= $row->nama_kriteria?> </option>
 
                   <?php
                     }
@@ -92,31 +75,35 @@
                 </select>
               </div>
             </div>
-             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Nilai</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="nilai_himpunan" value="<?= set_value('nilai_himpunan', $detail['nilai_himpunan']) ?>">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Bobot</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="bobot_himpunan" value="<?= set_value('bobot_himpunan', $detail['bobot']) ?>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Keterangan</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="ket_himpunan" value="<?= set_value('ket_himpunan', $detail['keterangan']) ?>" >
-              </div>
-            </div>
-            <br>
-            <div class="form-group row">
-              <div class="col-sm-4 offset-sm-3">
+            <div class="form-group">
+                  <label class="form-control-label">Nilai</label><br>
+                  <select class="form-control" name="nilai_himpunan">
+                    <option><?= set_value('bobot', $himp['nilai_himpunan']) ?></option>
+                    <option value="">-- Pilihan Nilai Himpunan --</option>
+                    <option value="<40"> <40 </option>
+                    <option value="41-50"> 41-50 </option>
+                    <option value="51-70"> 51-70 </option>
+                    <option value="71-90"> 71-90 </option>
+                    <option value=">90"> >90 </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Bobot</label>
+                  <select class="form-control" name="bobot_himpunan">
+                    <option><?= set_value('bobot', $himp['bobot']) ?></option>
+                    <option value="">-- Pilihan Bobot Nilai Himpunan --</option>
+                    <option value="1"> 1 [Sangat rendah] </option>
+                    <option value="2"> 2 [Rendah] </option>
+                    <option value="3"> 3 [Cukup] </option>
+                    <option value="4"> 4 [Tinggi] </option>
+                    <option value="5"> 5 [Sangat Tinggi] </option>
+                  </select>
+                </div>
                 <a href="<?=site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"><button type="submit" class="btn btn-primary">Simpan</button></a>
-              </div>
-            </div>
             </form>
+            <div class="form-group" align="right">       
+              <a style="color: white;" href="<?= site_url('admin/DataKriteria/HimpKriteria/Himp_Kriteria')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
+            </div>
           </div><!-- card-body -->
         </div><!-- card -->
 

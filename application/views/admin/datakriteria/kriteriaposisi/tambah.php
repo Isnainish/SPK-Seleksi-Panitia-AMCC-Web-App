@@ -50,17 +50,16 @@
     <!-- Tambah kriteria -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
-          <br>
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-header d-flex align-items-center">
               <h3 class="h4">Tambah Sie dalam Kepantiaan</h3>
             </div>
             <div class="card-body">
               <form method="post" action="<?= base_url() ?>index.php/admin/DataKriteria/KriteriaPosisi/KriteriaPosisi/addKritPos">
-                <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Kepanitiaan</label>
-                          <div class="col-sm-4">
+                <div class="form-group">
+                          <label class="form-control-label">Kepanitiaan</label>
+                          <div>
                            <select class="form-control" name="id_kegiatan">
                             <option>-- Pilih Nama Kegiatan --</option>
                             <?php foreach ($select_kegiatan->result() as $row) {
@@ -73,20 +72,19 @@
                           </select>
                         </div>
                       </div>
-               <div class="form-group row">
-                <label class="col-sm-3 form-control-label">Nama Sie-Panitia</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" name="nama_sie" required>
+               <div class="form-group">
+                <label class="form-control-label">Nama Sie-Panitia</label>
+                <div>
+                  <input type="text" class="form-control" name="nama_sie" placeholder="nama sie-panitia" required>
                 </div>
               </div>
-              <div class="form-group row">
-                <div class="col-sm-4 offset-sm-3">
-
-                  <a href="<?=site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"><input type="submit" name="simpan" class="btn btn-primary"></a>
-
-                </div>
-              </div>
+                  <a style="color: white;" href="<?=site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"><button class="btn btn-info btn-sm" style="padding: 8px;"> Simpan</button></a>
+              
             </form>
+            <div class="form-group" align="right">
+               
+               <a style="color: white;" href="<?= site_url('admin/DataKriteria/KriteriaPosisi/KriteriaPosisi')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a>
+            </div>
           </div><!-- card-body -->
 
         </div><!-- card -->

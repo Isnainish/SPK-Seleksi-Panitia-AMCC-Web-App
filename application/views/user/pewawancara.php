@@ -20,15 +20,16 @@
                 4. Untuk mengetahui detail kriteria yang digunakan dalam proses seleksi dapat dilihat dengan meng-klik data pendaftar. <br>
                 </p>
                 <br>
-                <div class="col-sm-4" >
+                <div class="col-lg-4" >
                 <div class="form-inline">
                   <div class="col-sm-6" >
                     <a style="color: white;" href="<?=site_url('user/Pewawancara/Kriteria')?>"><button class="btn btn-info" style="padding: 10px;">Data Kriteria</button></a>
                   </div>
                   <div class="col-sm-6" >
-                    <a style="color: white;" href="<?=site_url('user/Pewawancara/DataPendaftar')?>"><button class="btn btn-warning" style="padding: 10px;">Data Penilaian</button></a>
+                    <a style="color: white;" href="<?=site_url('user/Pewawancara/DataPendaftar')?>"><button class="btn btn-warning" style="padding: 10px;">Lakukan Penilaian</button></a>
                   </div>
                 </div>
+             
                 <br>
                 </div>
                      

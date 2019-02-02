@@ -49,15 +49,21 @@
               
               <!-- Navbar Menu -->
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                <!-- Search-->
-                <li class="nav-item d-flex align-items-center"><a href="#"><i class="icon-user"></i> Hi, [$nama]
 
-                </a></li>
+                <li class="nav-item d-flex align-items-center" style="margin-top: 10px;">
+                  <h4>Hi, <?= $this->session->userdata['auth_session']['nama'];?></h4>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('user/Pewawancara/UbahPewawancara/')?><?= $this->session->userdata['auth_session']['id_user'];?>"><i class="icon-user"></i><span class="badge bg-red">1</span></a>
+                 
+                </li>
 
-               
+
                 <!-- Logout    -->
-                <li class="nav-item"><a href="<?=site_url('auth/Auth/logout_proses')?>" class="nav-link logout"> <i class="fa fa-sign-out">Logout</i></a></li>
+                <li class="nav-item" style="margin-left: 25px; margin-top : 10px;"><h4><a href="<?=site_url('auth/Auth/logout_proses')?>" class="nav-link logout"> <i class="fa fa-sign-out">Logout</i></a></h4></li>
               </ul>
+
+
+
             </div>
 
               

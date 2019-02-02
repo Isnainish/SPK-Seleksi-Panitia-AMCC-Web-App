@@ -28,33 +28,25 @@
 		}
 
 		/*ubah suadmin*/
-		public function UbahSuad(){
-			$data['edtsuad'] = $this->m_suadmin->getDataSuad();
+		public function UbahSuad($id){
+			$data['edtsuad'] = $this->m_suadmin->getDataSuad($id);
 
 			$this->load->view('suadmin/ubah_suadmin',$data);
 		}		
 
-		public function editSuad(){
+		public function editSuad($id){
 
-			/*$datauser = array(
+			$datauser = array(
 				'nama' =>$this->input->post('nama'),
 				'username' =>$this->input->post('username'),
 				'password' =>$this->input->post('password'),
 			);
 
-			$id_user = $this->m_suadmin->updatedtuser($datauser);
-
-			$datasuad = array(
-				'id_user' =>$id_user,
-				'id_kegiatan' =>'1',
-				'id_level' => '1'
-			);
-
-			if ($this->m_suadmin->updateSuad($datasuad)) {
+			if ($this->m_suadmin->updateSuad($id, $datauser)) {
 				redirect('suadmin/SuAdmin/');
 			} else {
 				redirect('suadmin/SuAdmin/');
-			}*/
+			}
 		}
 
 
@@ -116,10 +108,30 @@
 		/*tambah admin*/
 		public function tambahAdmin(){
 			$data['kegiatan'] = $this->m_suadmin->getKegiatan();
+			$data['nama'] = $this->m_suadmin->getUser();
 			$this->load->view('suadmin/tambah_admin',$data);
 		}
 
 		public function addAdmin(){
+
+			$dataduser = array(
+				'id_user' =>$this->input->post('id_user'),
+				'id_kegiatan' =>$this->input->post('id_kegiatan'),
+				'id_level' => '2'
+			);
+
+			$this->m_suadmin->addAdmin($dataduser);
+
+			redirect('suadmin/Suadmin/DataAdmin');
+		}
+
+		/*tambah admin*/
+		public function tambahAdmins(){
+			$data['kegiatan'] = $this->m_suadmin->getKegiatan();
+			$this->load->view('suadmin/tambah_admins',$data);
+		}
+
+		public function addAdmins(){
 			$datauser = array(
 				'nama' =>$this->input->post('nama'),
 				'username' =>$this->input->post('username'),
@@ -133,10 +145,11 @@
 				'id_level' => '2'
 			);
 
-			$this->m_suadmin->addAdmin($dataduser);
+			$this->m_suadmin->addAdmins($dataduser);
 
 			redirect('suadmin/Suadmin/DataAdmin');
 		}
+
 		/*detail admin*/
 		public function DetailAdmin($id){
 			$where = array(
@@ -146,46 +159,13 @@
 
 			$this->load->view('suadmin/detail_admin',$data);
 		}	
-		/*ubah admin*/
-		public function UbahAdmin($id){
-			$data['pilih_kegiatan'] = $this->m_suadmin->getKegiatan();
-			$where = array(
-				'id_detail_user'=>$id,
-			);
-			$data['edit'] = $this->m_suadmin->getDataAdmin($where);
-			$this->load->view('suadmin/ubah_admin',$data);
-		}
-
-		public function doEditAdmin($id){
-
-			// $datauser = array(
-			// 	'nama' =>$this->input->post('nama'),
-			// 	'username' =>$this->input->post('username'),
-			// 	'password' =>$this->input->post('password'),
-			// );
-			// $id_user = $this->m_suadmin->updateuser($datauser);
-
-			// $dataduser = array(
-			// 	'id_user' =>$id_user,
-			// 	'id_kegiatan' =>$this->input->post('id_kegiatan'),
-			// 	'id_level' => '2'
-			// );
-
-			// $where = array(
-			// 	'id_detail_user' => $id);
-
-			// if ($this->m_suadmin->updateAdmin($where, $dataduser)) {
-			// 	redirect('suadmin/SuAdmin/DataAdmin');
-			// } else {
-			// 	redirect('suadmin/SuAdmin/DataAdmin');
-			// }
-		}
+		
 		/*hapus admin*/
 		public function HapusAdmin($id_detail_user){
 
-			// $this->m_suadmin->DeleteAdmin($id_detail_user);
+			$this->m_suadmin->DeleteAdmin($id_detail_user);
 
-			// redirect('suadmin/SuAdmin/DataAdmin');
+			redirect('suadmin/SuAdmin/DataAdmin');
 		}
 
 

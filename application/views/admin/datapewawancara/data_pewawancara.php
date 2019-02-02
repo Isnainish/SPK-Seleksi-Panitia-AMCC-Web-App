@@ -86,51 +86,54 @@
                 <div class="row">
                   <div class="col-lg-12" >
                     <br>
-                    <div class="button">
+                    <div class="button"
+                    <?php if ($detail_kegiatan == 0) {
+                      echo "hidden";
+                    }?>>
                       <a style="color: white; padding-left: 15px;" href="<?=site_url('admin/Pewawancara/tambahPewawancara')?>"><button class="btn btn-info btn-sm">Tambah Pewawancara</button></a>
                     </div>
 
                     <br>
                     <!-- Data Pewawancara -->
-                    <div class="col-lg-7" >
+                    <div class="col-lg-10" >
                       <div class="daily-feeds card"> 
                         <div class="card-header sidebar-header-shadow">
                           <h3 class="h4">Daftar Pewawancara 
-                          <?php foreach ($select->result() as $row) {
-                            ?>
-                             <?= ($row->id_kegiatan == $pilihkegiatan['id_kegiatan'] ? $row->nama_kegiatan : '') ?>
+                            <?php foreach ($select->result() as $row) {
+                              ?>
+                               <?= ($row->id_kegiatan == $pilihkegiatan['id_kegiatan'] ? $row->nama_kegiatan : '') ?>
 
-                            <?php
-                          }
-                          ?>
-                          </h3>
-                          
+                              <?php
+                            }
+                            ?>
+                          </h3>           
                         </div>
                         <?php foreach ($listPewawancara->result() as $list) {
                         ?>   
                         <div class="card-body no-padding">
-                          <!-- Item-->
                           <div class="item">             
-                            <div class="feed d-flex justify-content-between"> 
-                                                  
-                              <table class="feed-body d-flex justify-content-between"> 
+                                                 
+                              <table class="feed-body d-flex justify-content-between" > 
+                                <tbody class="col-lg-10">
                                 <tr>
-                                <td width="5%"><a href="#" class="feed-profile"><img src="<?=base_url('assets/img/amcc-logo.png')?>" alt="person" class="img-fluid rounded-circle"></a></td>     
-                                <td width="50%">
-                                  <h5><?=$list->nama ?></h5>
-                                  <span><?=$list->nama_level?></span> 
-                                  <br>
-                                    <div class="CTAs">
-                                    <a href="<?=site_url('admin/Pewawancara/detailPewawancara/')?><?=$list->id_detail_user?>" class="btn btn-xs btn-info">Detail</a>
-                                    <a href="<?=site_url('admin/Pewawancara/ubahPewawancara/')?><?=$list->id_detail_user?>" class="btn btn-xs btn-warning">Ubah</a>
-                                    <a href="<?=site_url('admin/Pewawancara/hapusPewawancara/')?><?=$list->id_detail_user?>" class="btn btn-xs btn-danger">Hapus</a>
-                                  </div>
+                                  <td width="5%"><a href="#" class="feed-profile"><img src="<?=base_url('assets/img/amcc-logo.png')?>" alt="person" class="img-fluid rounded-circle"></a></td>     
+                                  <td width="50%">
+                                    <h5><?=$list->nama ?></h5>
+                                    <span><?=$list->nama_level?></span> 
+                                    <br>
+                                    <div class="CTAs"
+                                    <?php if ($detail_kegiatan == 0) {
+                                      echo "hidden";
+                                    } ?>>
+                                      <a href="<?=site_url('admin/Pewawancara/detailPewawancara/')?><?=$list->id_detail_user?>" class="btn btn-xs btn-info">Detail</a>
+                                      <a href="<?=site_url('admin/Pewawancara/hapusPewawancara/')?><?=$list->id_detail_user?>" class="btn btn-xs btn-danger">Hapus</a>
+                                    </div>
                                   </td>
+                                </tr>
+                                </tbody>
+                              </table>
                               
-                              </tr>
-                            </table>
-                              
-                            </div>
+                            
                           </div>
 
                           

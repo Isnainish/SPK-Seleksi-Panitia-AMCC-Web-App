@@ -15,9 +15,9 @@
     <ul class="list-unstyled">
       <li class="active"><a href="<?=site_url('admin/Beranda')?>"> <i class="icon-home"></i>Beranda</a></li>
 
-     <li><a href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"> <i class="icon-user"></i>Data Pendaftar </a></li>
+      <li><a href="<?=site_url('admin/DataPendaftar/Pendaftar')?>"> <i class="icon-user"></i>Data Pendaftar </a></li>
 
-     <li><a href="<?=site_url('admin/DataUser/User/dataPewawancara')?>"> <i class="icon-user"></i>Data Pewawancara </a></li>
+      <li><a href="<?=site_url('admin/DataUser/User/dataPewawancara')?>"> <i class="icon-user"></i>Data Pewawancara </a></li>
 
       <li><a href="<?=site_url('admin/DataKriteria/Kriteria/Kriteria')?>"> <i class="icon-interface-windows"></i>Data Kriteria </a>
       </li>
@@ -51,35 +51,39 @@
       <div class="row">
         <div class="col-lg-5">
           <div class="card">
-            <div class="card-header d-flex align-items-center">
-              <h3 class="h4">Ubah Profil Admin</h3>
-            </div>
             <div class="card-body">
-            <form method="post" action="<?= site_url('admin/Beranda/doEditAdmin/'.$profil['id_detail_user'])?>">
-                      <div class="form-group">
-                        <label class="form-control-label">Nama Lengkap</label>
-                        <input type="text" placeholder="nama lengkap" class="form-control" name="nama" value="<?= set_value('nama', $profil['nama']) ?>">
-                      </div>
-                      <div class="form-group">
-                        <label class="form-control-label">Username</label>
-                        <input type="text" placeholder="username" class="form-control" name="username" value="<?= set_value('username', $profil['username']) ?>">
-                      </div>
-                      <div class="form-group">       
-                        <label class="form-control-label">Password</label>
-                        <input type="text" placeholder="password" class="form-control" name="password" value="<?= set_value('password', $profil['password']) ?>">
-                      </div>
-                      <div class="form-group">       
-                        <label class="form-control-label">Tanggal Pelaksanaan</label>
-                        <input type="text" placeholder="tanggal pelaksanaan" class="form-control" name="tanggal" value="<?= set_value('tanggal', $profil['tanggal']) ?>">
-                      </div>
-                      <input type="submit" value="Simpan" class="btn btn-primary">
-                  </form>
-                  <div class="form-group" align="right"><a style="color: white;" href="<?= site_url('admin/Beranda')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Kembali</button></a></div>
-          </div><!-- card-body -->
+              <form method="post" action="<?= site_url('admin/Beranda/doEditAdmin/'.$profil['id_detail_user'])?>">
+                <div class="card-header d-flex align-items-center">
+                  <h3 class="h4">Ubah Data Admin<br><strong style="color: #0090d2;"><?= $profil['nama_kegiatan']?></strong></h3>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Nama Kegiatan</label>
+                  <input type="text" placeholder="nama kegiatan" class="form-control" name="nama_kegiatan" value="<?= set_value('nama_kegiatan', $profil['nama_kegiatan']) ?>">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Nama Lengkap</label>
+                  <input type="text" placeholder="nama lengkap" class="form-control" name="nama" value="<?= set_value('nama', $profil['nama']) ?>">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Username</label>
+                  <input type="text" placeholder="username" class="form-control" name="username" value="<?= set_value('username', $profil['username']) ?>">
+                </div>
+                <div class="form-group">       
+                  <label class="form-control-label">Password</label>
+                  <input type="text" placeholder="password" class="form-control" name="password" value="<?= set_value('password', $profil['password']) ?>">
+                </div>
+                <div class="form-group">       
+                  <label class="form-control-label">Tanggal Pelaksanaan Seleksi Panitia</label>
+                  <input type="text" placeholder="tanggal pelaksanaan seleksi panitia" class="form-control" name="tanggal" value="<?= set_value('tanggal', $profil['tanggal']) ?>">
+                </div>
+                <input type="submit" value="Simpan" class="btn btn-primary">
+              </form>
+              <div class="form-group" align="right"><a style="color: white;" href="<?= site_url('admin/Beranda')?>"><button class="btn btn-secondary btn-sm" style="padding: 8px;"> Batal </button></a></div>
+            </div><!-- card-body -->
 
-        </div><!-- card -->
-      </div>
-    </div><!-- row -->
-  </div> 
+          </div><!-- card -->
+        </div>
+      </div><!-- row -->
+    </div> 
 
-  <?php $this->load->view('admin/template/footer'); ?>
+    <?php $this->load->view('admin/template/footer'); ?>

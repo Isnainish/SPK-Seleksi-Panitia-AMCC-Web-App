@@ -17,17 +17,26 @@
 
 		public function index(){
 			$addkegiatan = $this->session->userdata('addkegiatan');
-			$data['kegiatanamcc'] = $this->m_user->getKegiatan(); 
-
+			$data['kegiatanamcc'] = $this->m_user->getAllKegiatan(); 
 			$data['select_sie'] = $this->m_user->getSie($addkegiatan['id_kegiatan']);
 			$this->load->view('user/pendaftaran',$data);
 		}
 
+		public function pendaftaranByKegiatan($id_kegiatan)
+		{
+			$data['kegiatanamcc'] = $this->m_user->getAllKegiatan();
+			$data['select_sie'] = $this->m_user->getSie($id_kegiatan);
+			$this->load->view('user/pendaftaran', $data);
+		}
+
 		/*filter kegiatan*/
 		public function doSearchKegiatan(){
-			$addkegiatan['id_kegiatan'] = $this->input->post('id_kegiatan');
-			$this->session->set_userdata('addkegiatan', $addkegiatan);
-			redirect('user/FormPendaftar');
+
+			$idKegiatan['id_kegiatan'] = $this->input->post('id_kegiatan');
+			$this->session->set_userdata('addkegiatan', $idKegiatan);
+			$data['kegiatanamcc'] = $this->m_user->getAllKegiatan();
+			$data['select_sie'] = $this->m_user->getSie($idKegiatan['id_kegiatan']);
+			$this->load->view('user/pendaftaran', $data);
 		}
 
 		public function processaddPendaftar($id_kegiatan){
@@ -35,8 +44,8 @@
 			//upload foto
 			$config['upload_path'] = 'assets/foto/';
 			$config['allowed_types'] = 'jpg|jpeg|png|bmp';
-			$config['max_size'] = '100';
-			$config['file_name'] = strtolower(str_replace(' ','-',$this->input->post('nama_pendaftar')));
+			$config['max_size'] = '2000';
+			$config['file_name'] = strtolower(str_replace(' ','-',$this->input->post('id_kegiatan')));
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('filefoto')) {

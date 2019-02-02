@@ -67,7 +67,7 @@
               <br>
 
               <div class="button align-items-center">
-                <a href="<?=site_url('admin/DataPerhitungan/Rekomendasi/simpan_data_tunggal/')?><?= $idsie?>"><input type="submit" name="simpan" value="Simpan Hasil" class="btn btn-primary"></a>
+                <a href="<?=site_url('admin/DataPerhitungan/Rekomendasi/simpan_data_tunggal/')?><?= $idkegiatan?>/<?= $idsie?>"><input type="submit" name="simpan" value="Simpan Hasil" class="btn btn-primary"></a>
                </div>
                <br>
               </div>

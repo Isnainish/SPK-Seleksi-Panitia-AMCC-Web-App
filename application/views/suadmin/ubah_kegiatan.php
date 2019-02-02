@@ -47,8 +47,8 @@
                         <input type="text" placeholder="nama Kegiatan" class="form-control" name="nama_kegiatan" required value="<?= set_value('nama_kegiatan', $edtKegiatan['nama_kegiatan']) ?>">
                       </div>
                       <div class="form-group">
-                        <label class="form-control-label">Tanggal Pelaksanaan</label>
-                        <input type="text" placeholder="tanggal pelaksanaan" class="form-control" name="tanggal" required value="<?= set_value('tanggal', $edtKegiatan['tanggal']) ?>">
+                        <label class="form-control-label">Tanggal Pelaksanaan Seleksi</label>
+                        <input type="text" placeholder="tanggal pelaksanaan seleksi" class="form-control" name="tanggal" required value="<?= set_value('tanggal', $edtKegiatan['tanggal']) ?>">
                       </div>
 
                     <div class="form-group">       

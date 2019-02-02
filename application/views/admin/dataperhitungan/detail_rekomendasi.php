@@ -75,7 +75,7 @@
                 <tbody align="center">                
                   <?php 
                    $i=1;
-                   foreach ($nilaiawal as $val) { ?>
+                   foreach ($nilaibaru as $val) { ?>
                    <tr>
                      <td><?= $i?></td>
                      <td><?= $val['nama_pendaftar'] ?></td>
@@ -177,7 +177,6 @@
                     <th width="5%">C5</th>
                     <th width="5%">C6</th>
                     <th width="5%">C7</th>
-                    <th width="10%">Total nilai V</th>
                   </tr>   
                 </thead>
                 <tbody align="center">                
@@ -195,7 +194,6 @@
                     <td><?= $v['c5']  ?></td>
                     <td><?= $v['c6']  ?></td>
                     <td><?= $v['c7']  ?></td>
-                    <td><?= array_sum($v) ?></td>
                     
                   </tr>
                   <?php 
@@ -233,13 +231,13 @@
                 <tbody align="center">               
                   <?php 
                     $i = 1;
-                    foreach ($preferensi as $v) {
+                    foreach ($rangking as $rangking) {
                   ?>
                   <tr>  
 
                     <td><?= $i ?></td>
                     <td>Alternatif <?= $i ?></td>
-                    <td><?= $v?></td>
+                    <td><?= $rangking?></td>
 
                     
                   </tr>
@@ -247,13 +245,11 @@
                 </tbody>
               </table>
 
-
-
           </div>
 
           <div class="col-sm-4">
                 
-                <a href="<?=site_url('admin/DataPerhitungan/Rekomendasi/simpan_rekomendasi/')?><?= $idsie?>"><input type="submit" name="simpan" value="Simpan Hasil" class="btn btn-primary"></a>
+                <a href="<?=site_url('admin/DataPerhitungan/Rekomendasi/simpan_rekomendasi/')?><?= $idkegiatan?>/<?= $idsie?>"><input type="submit" name="simpan" value="Simpan Hasil" class="btn btn-primary"></a>
                 
                 
               </div>
